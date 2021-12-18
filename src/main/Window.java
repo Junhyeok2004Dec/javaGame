@@ -25,25 +25,60 @@ public class Window {
     //Scene(Stage 구현 등)
     private static Scene currentScene;
 
-
-
-    private Window() {
-        this.width = 1280;
-        this.height = 720;
-        this.title = "Jeil RPG";
+    private void colorReset() {
         r = 1;
         g = 1;
         b = 1;
         a = 1;
     }
 
+
+    private Window() {
+        this.width = 1280;
+        this.height = 720;
+        this.title = "Jeil RPG";
+
+    }
+
         public static void changeScene(int newScene) {
+
+
+
+        /*
+        Scene 구성
+
+        -1 : default(씬 없음)
+        0 : 메인화면
+        1~10 : 마을 화면
+        11~36 : 게임 스테이지
+        37~40 : 보스방
+        41 : data창
+        42 : map 창
+        99 : 옵션창
+         */
+
+
 
             switch (newScene) {
                 case 0:
-                    currentScene = new LevelScene();
-                    //currentScene.init();
+                    currentScene = new MainScene();
+                    currentScene.init();
                     break;
+                case 41:
+                    currentScene = new OptionScene();
+                    currentScene.init();
+                    break;
+
+                case 42:
+                    currentScene = new MapScene();
+                    currentScene.init();
+                    break;
+
+                case 99:
+                    currentScene = new OptionScene();
+                    currentScene.init();
+                    break;
+
                 default:
                     assert false : "Unknown scene / levels'" + newScene + "'";
                     break;
@@ -132,6 +167,8 @@ public class Window {
 
         GL.createCapabilities();
 
+        Window.changeScene(0);
+
 
 
     }
@@ -139,6 +176,7 @@ public class Window {
     public void loop() {
         float beginTime = Time.getTime();
         float endTime = Time.getTime();
+        float dt = -1.0f;
 
         while (!glfwWindowShouldClose(glfwWindow))
         {
@@ -146,27 +184,39 @@ public class Window {
 
 
 
-            glClearColor(r, g, b, a);
+            //색 설정
+            //glClearColor(r, g, b, a);
+
+
             glClear(GL_COLOR_BUFFER_BIT);
 
-            if (fadeBlack) {
-                r = Math.max(r - 0.01f, 0);
-                g = Math.max(g - 0.01f, 0);
-                b = Math.max(b - 0.01f, 0);
-                a = Math.max(a - 0.01f, 0);
 
+
+            // dt에 따른 시간 변화 (scene update by dt)
+            if (dt >= 0) {
+                currentScene.update(dt);
             }
 
+
+
+            //graphic work -- 하얀색 -> 검정색 변화
+
+
             if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-                fadeBlack = true;
+                changeScene(0   );
 
             }
 
             glfwSwapBuffers(glfwWindow);
 
+
+
+
+
+
             // Time management
             endTime = Time.getTime();
-            float dt = endTime - beginTime;
+            dt = endTime - beginTime;
             beginTime = endTime;
         }
 

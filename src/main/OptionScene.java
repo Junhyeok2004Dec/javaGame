@@ -2,21 +2,28 @@ package main;
 
 import java.awt.event.KeyEvent;
 
-public class LevelScene extends Scene{
+public class OptionScene extends Scene{
 
 
     private boolean changingScene = false;
     private float timeToChangeScene = 2.0f;
 
+    public OptionScene() {
+        System.out.println("Program Setting Scene");
+    }
 
-    public LevelScene() {
+    @Override
+    public void init() {
 
     }
+
 
     @Override
     public void update(float dt) {
 
-        if (!changingScene && KeyListener.isKeyPressed(KeyEvent.VK_SPACE)){
+        System.out.println("" + (1.0f / dt) + "FPS");
+
+        if (!changingScene && KeyListener.isKeyPressed(KeyEvent.VK_ENTER)){
             changingScene = true;
         }
 
@@ -24,7 +31,7 @@ public class LevelScene extends Scene{
         {
             timeToChangeScene -= dt;
             Window.get().r -= dt * 5.0f;
-            Window.get().g -= dt * 5.0f;
+            Window.get().g -= dt * 1.0f;
             Window.get().b -= dt * 5.0f;
 
         } else if (changingScene)
@@ -32,5 +39,4 @@ public class LevelScene extends Scene{
 
         }
     }
-
 }
