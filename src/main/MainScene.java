@@ -1,12 +1,17 @@
 package main;
 
+import main.assets.Camera;
+import main.assets.Shader;
+import main.util.Time;
+import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class MainScene extends Scene {
 
@@ -36,11 +41,11 @@ public class MainScene extends Scene {
     private int vertexID, fragmentID, shaderProgram;
 
     private float[] vertexArray = {
-        //pos                       //color
-    0.5f, -0.5f, 0.0f,          1.0f, 0.0f, 0.0f, 1.0f, // right bottom 0
-    -0.5f, 0.5f, 0.0f,           0.0f, 1.0f, 0.0f, 1.0f, // left top 1
-    0.5f, 0.5f, 0.0f,           0.0f, 0.0f, 1.0f, 1.0f, // right top 2
-    -0.5f, -0.5f, 0.0f,         1.0f, 1.0f, 0.0f, 1.0f, // left bottom 3
+            //pos                       //color                     //UV
+            100.5f, -22.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1, 0,    // right bottom 0
+            -100.5f, 22.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1, 1,    // left top 1
+            100.5f, 22.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1, 1,    // right top 2
+            -100.5f, -22.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0, 0     // left bottom 3
 
     };
 
@@ -53,9 +58,8 @@ public class MainScene extends Scene {
 
                 3      0
              */
-            2,1,0, // topRight
-            0,1,3 // btmLeft
-
+            2, 1, 0, // topRight
+            0, 1, 3 // btmLeft
 
 
     };
@@ -63,69 +67,22 @@ public class MainScene extends Scene {
 
     private int vaoID, vboID, eboID;
 
+
+    private Shader defaultShader;
+
     public MainScene() {
-        System.out.println("MainWindow");
+
 
     }
 
     @Override
     public void init() {
 
-        vertexID = glCreateShader(GL_VERTEX_SHADER);
-        // Pass the shader source to the GPU
-        glShaderSource(vertexID, vertexShaderSource);
-        glCompileShader(vertexID);
 
-        // Check for errors in compilation
-        int success = glGetShaderi(vertexID, GL_COMPILE_STATUS);
-        if (success == GL_FALSE) {
-            int len = glGetShaderi(vertexID, GL_INFO_LOG_LENGTH);
-            System.out.println("ERROR: 'defaultShader.glsl'\n\tVertex shader compilation failed.");
-            System.out.println(glGetShaderInfoLog(vertexID, len));
-            assert false : "";
-        }
+        this.camera = new Camera(new Vector2f());
 
-
-
-
-
-        //load & compile the vertex Shader //
-        fragmentID = glCreateShader(GL_FRAGMENT_SHADER);
-
-        // Send the data of the shader info to GPU
-        glShaderSource(fragmentID, fragmentShaderSource);
-        glCompileShader(fragmentID);
-
-        //Err check at compile
-        success = glGetShaderi(fragmentID, GL_COMPILE_STATUS);
-        if (success == GL_FALSE) {
-            int len = glGetShaderi(fragmentID, GL_INFO_LOG_LENGTH);
-
-            System.out.println("ERR :: 'defaultShader.glsl'\n\t");
-            System.out.println(glGetShaderInfoLog(fragmentID, len));
-            assert false : "";
-        }
-
-
-        // Link Shader
-        shaderProgram = glCreateProgram();
-        glAttachShader(shaderProgram, vertexID);
-        glAttachShader(shaderProgram, fragmentID);
-        glLinkProgram(shaderProgram);
-
-        //check err when link
-
-        success = glGetProgrami(shaderProgram, GL_LINK_STATUS);
-        if (success == GL_FALSE) {
-            int len = glGetProgrami(shaderProgram, GL_INFO_LOG_LENGTH);
-
-            System.out.println("ERR : 'default.glsl'\n\f");
-            System.out.println(glGetProgramInfoLog(fragmentID, len));
-
-        }
-
-
-
+        defaultShader = new Shader("src/main/assets/default.glsl");
+        defaultShader.compile();
         /*
 
         ============================================================
@@ -143,7 +100,7 @@ public class MainScene extends Scene {
         // float VBO upload -> vertex buffer
         vboID = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferData(GL_ARRAY_BUFFER,vertexBuffer,GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, vertexBuffer, GL_STATIC_DRAW);
 
         // Indices & Upload
 
@@ -158,22 +115,34 @@ public class MainScene extends Scene {
 
         int positionsSize = 3;
         int colorSize = 4;
-        int floatSizeBytes = 4;
-        int vertexSizeBytes = (positionsSize + colorSize) * floatSizeBytes;
+        int uvSize = 2;
+
+        int vertexSizeBytes = (positionsSize + colorSize + uvSize) * Float.BYTES;
         glVertexAttribPointer(0, positionsSize, GL_FLOAT, false, vertexSizeBytes, 0);
         glEnableVertexAttribArray(0);
 
-        glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSizeBytes, positionsSize * floatSizeBytes);
+        glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSizeBytes, positionsSize * Float.BYTES);
         glEnableVertexAttribArray(1);
+
+
+        glVertexAttribPointer(2, uvSize, GL_FLOAT, false, vertexSizeBytes, (positionsSize + colorSize) * Float.BYTES);
+        glEnableVertexAttribArray(2);
 
     }
 
     @Override
     public void update(float dt) {
 
-        System.out.println("" + (1.0f / dt) + "FPS");
-        //shaderProgram
-        glUseProgram(shaderProgram);
+
+        camera.position.x -= dt * 22.0f;
+        camera.position.y -= dt * 16.2f;
+
+
+        defaultShader.use();
+        defaultShader.uploadMat4f("uProjection", camera.getProjectionMatrix());
+        defaultShader.uploadMat4f("uView", camera.getViewMatrix());
+        defaultShader.uploadFloat("uTime", Time.getTime());
+
 
         // VAO bind
         glBindVertexArray(vaoID);
@@ -189,7 +158,9 @@ public class MainScene extends Scene {
         glDisableVertexAttribArray(1);
 
         glBindVertexArray(0);
-        glUseProgram(0);
+
+
+        defaultShader.detach();
     }
 
 }

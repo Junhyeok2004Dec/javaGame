@@ -1,6 +1,10 @@
 package main;
 
+import main.assets.Camera;
+
 public abstract class Scene {
+
+    public Camera camera;
 
     public Scene() {
 
