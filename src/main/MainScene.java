@@ -1,7 +1,9 @@
 package main;
 
-import main.assets.Camera;
 import main.assets.Shader;
+import main.assets.Texture;
+import main.assets.components.FontRenderer;
+import main.assets.components.SpriteRenderer;
 import main.util.Time;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
@@ -41,27 +43,21 @@ public class MainScene extends Scene {
     private int vertexID, fragmentID, shaderProgram;
 
     private float[] vertexArray = {
-            //pos                       //color                     //UV
-            100.5f, -22.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1, 0,    // right bottom 0
-            -100.5f, 22.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1, 1,    // left top 1
-            100.5f, 22.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1, 1,    // right top 2
-            -100.5f, -22.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0, 0     // left bottom 3
-
+            // position               // color                  // UV Coordinates
+            100f,   0f, 0.0f,       1.0f, 0.0f, 0.0f, 1.0f,     1, 1, // Bottom right 0
+            0f, 100f, 0.0f,       0.0f, 1.0f, 0.0f, 1.0f,     0, 0, // Top left     1
+            100f, 100f, 0.0f ,      1.0f, 0.0f, 1.0f, 1.0f,     1, 0, // Top right    2
+            0f,   0f, 0.0f,       1.0f, 1.0f, 0.0f, 1.0f,     0, 1  // Bottom left  3
     };
 
-
+    // IMPORTANT: Must be in counter-clockwise order
     private int[] elementArray = {
             /*
-                1      2
-
-
-
-                3      0
+                    x        x
+                    x        x
              */
-            2, 1, 0, // topRight
-            0, 1, 3 // btmLeft
-
-
+            2, 1, 0, // Top right triangle
+            0, 1, 3 // bottom left triangle
     };
 
 
@@ -69,6 +65,11 @@ public class MainScene extends Scene {
 
 
     private Shader defaultShader;
+    private Texture texture;
+
+    GameObject testObj;
+
+    private boolean firstTime = false;
 
     public MainScene() {
 
@@ -78,11 +79,21 @@ public class MainScene extends Scene {
     @Override
     public void init() {
 
+        System.out.println("creating 'test obj'");
+
+        this.testObj = new GameObject("test object");
+        this.testObj.addComponent(new SpriteRenderer());
+        this.testObj.addComponent(new FontRenderer());
+
+        this.addGameObjectToScene(this.testObj);
+
 
         this.camera = new Camera(new Vector2f());
 
         defaultShader = new Shader("src/main/assets/default.glsl");
         defaultShader.compile();
+
+        this.texture = new Texture("src/main/assets/image/1.png");
         /*
 
         ============================================================
@@ -139,6 +150,13 @@ public class MainScene extends Scene {
 
 
         defaultShader.use();
+
+        //Upload texture to shader
+
+        defaultShader.uploadTexture("TEX_SAMPLER", 0);
+        glActiveTexture(GL_TEXTURE0);
+        texture.bind();
+
         defaultShader.uploadMat4f("uProjection", camera.getProjectionMatrix());
         defaultShader.uploadMat4f("uView", camera.getViewMatrix());
         defaultShader.uploadFloat("uTime", Time.getTime());
@@ -161,6 +179,22 @@ public class MainScene extends Scene {
 
 
         defaultShader.detach();
+
+        if (!firstTime) {
+            System.out.println("Creating Game obj");
+
+            GameObject go = new GameObject("Game Test 1232");
+            go.addComponent(new SpriteRenderer());
+
+            this.addGameObjectToScene(go);
+            firstTime = true;
+        }
+
+        for (GameObject go : this.gameObjects) {
+            go.update(dt);
+        }
+
+
     }
 
 }

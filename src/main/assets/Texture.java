@@ -49,11 +49,21 @@ public class Texture {
         IntBuffer height = BufferUtils.createIntBuffer(1);
         IntBuffer channels = BufferUtils.createIntBuffer(1);
 
-        ByteBuffer image = stbi_load(filepath,width,height,channels,0   );
+        ByteBuffer image = stbi_load(filepath, width, height, channels, 0);
 
         if (image != null) {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width.get(0), height.get(0),
-                    0,GL_RGBA, GL_UNSIGNED_BYTE,image);
+
+            if (channels.get(0) == 3) {
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width.get(0), height.get(0),
+                        0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+            } else if (channels.get(0) == 4) {
+
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width.get(0), height.get(0),
+                        0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+            } else {
+                assert false : "Err : [Texture] Wrong number of channels '" + channels.get(0) + "'";
+            }
+
         } else {
             assert false : "Err : [Texture] could not load the image'" + filepath + "'";
         }
@@ -61,6 +71,15 @@ public class Texture {
 
         stbi_image_free(image);
 
+    }
+
+    public void bind() {
+        glBindTexture(GL_TEXTURE_2D, texID);
+
+    }
+
+    public void unbind() {
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 
 

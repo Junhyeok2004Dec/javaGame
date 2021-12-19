@@ -63,20 +63,24 @@ public class Window {
                 case 0:
                     currentScene = new MainScene();
                     currentScene.init();
+                    currentScene.start();
                     break;
                 case 41:
                     currentScene = new OptionScene();
                     currentScene.init();
+                    currentScene.start();
                     break;
 
                 case 42:
                     currentScene = new MapScene();
                     currentScene.init();
+                    currentScene.start();
                     break;
 
                 case 99:
                     currentScene = new OptionScene();
                     currentScene.init();
+                    currentScene.start();
                     break;
 
                 default:
@@ -102,6 +106,13 @@ public class Window {
         }
         return Window.window;
     }
+
+    public static Scene getScene() {
+        return get().currentScene;
+
+
+    }
+
 
 
 
