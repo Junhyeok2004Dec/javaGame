@@ -30,9 +30,7 @@ public class Sprite {
         return this.texture;
     }
 
-    public Vector2f[] texCoords() {
+    public Vector2f[] getTexCoords() {
         return this.texCoords;
     }
-
-
 }

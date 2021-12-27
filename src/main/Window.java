@@ -37,6 +37,7 @@ public class Window {
         this.width = 1280;
         this.height = 720;
         this.title = "Jeil RPG";
+        colorReset();
 
     }
 
@@ -49,9 +50,6 @@ public class Window {
 
         -1 : default(씬 없음)
         0 : 메인화면
-        1~10 : 마을 화면
-        11~36 : 게임 스테이지
-        37~40 : 보스방
         41 : data창
         42 : map 창
         99 : 옵션창
@@ -150,7 +148,7 @@ public class Window {
         // GLFW configure
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
 
@@ -173,7 +171,11 @@ public class Window {
 
 
         glfwMakeContextCurrent(glfwWindow);
+
+        //Vsync Mode
         glfwSwapInterval(1);
+
+        //Window 보이게
         glfwShowWindow(glfwWindow);
 
         GL.createCapabilities();
@@ -186,7 +188,7 @@ public class Window {
 
     public void loop() {
         float beginTime = Time.getTime();
-        float endTime = Time.getTime();
+        float endTime;
         float dt = -1.0f;
 
         while (!glfwWindowShouldClose(glfwWindow))
@@ -196,7 +198,7 @@ public class Window {
 
 
             //색 설정
-            //glClearColor(r, g, b, a);
+            glClearColor(r, g, b, a);
 
 
             glClear(GL_COLOR_BUFFER_BIT);

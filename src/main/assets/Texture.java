@@ -10,7 +10,7 @@ import static org.lwjgl.stb.STBImage.*;
 
 public class Texture {
 
-
+    private final ByteBuffer image;
 
 
     private String filepath;
@@ -55,8 +55,14 @@ public class Texture {
 
         stbi_set_flip_vertically_on_load(true);
 
+
+
         //Buffer for Byte
-        ByteBuffer image = stbi_load(filepath, width, height, channels, 0);
+
+
+        //stbi_load filepath 절대 경로 확인 ... 1
+
+        image = stbi_load("G:\\JAVAG\\src\\main\\assets\\image\\spritesheet.png", width, height, channels, 0);
 
         if (image != null) {
             this.width = width.get(0);
@@ -64,22 +70,20 @@ public class Texture {
 
             if (channels.get(0) == 3) {
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width.get(0), height.get(0),
-                        0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+                        0, GL_RGB, GL_UNSIGNED_BYTE, image);
             } else if (channels.get(0) == 4) {
-
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width.get(0), height.get(0),
                         0, GL_RGBA, GL_UNSIGNED_BYTE, image);
             } else {
-                assert false : "Err : [Texture] Wrong number of channels '" + channels.get(0) + "'";
+                assert false : "Error: (Texture) Unknown number of channels '" + channels.get(0) + "'";
             }
-
         } else {
-            assert false : "Err : [Texture] could not load the image'" + filepath + "'";
+            assert false : "Error: (Texture) Could not load image '" + filepath + "'";
         }
 
 
-        stbi_image_free(image);
 
+       stbi_image_free(image);
     }
 
     public void bind() {
@@ -88,6 +92,7 @@ public class Texture {
     }
 
     public void unbind() {
+
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 

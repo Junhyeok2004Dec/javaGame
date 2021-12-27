@@ -14,7 +14,7 @@ public class MainScene extends Scene {
     }
 
     @Override
-    public void init(){
+    public void init() {
 
 
         loadResources();
@@ -22,21 +22,21 @@ public class MainScene extends Scene {
         this.camera = new Camera(new Vector2f(-250, 0));
 
 
-        SpriteSheet sprite = AssetPool.getSpritesheet("src/main/assets/image/spritesheet.png");
+        SpriteSheet sprite = AssetPool.getSpritesheet("src/main/assets/images/spritesheet.png");
 
-        GameObject obj1 = new GameObject("Obj1", new Transform(new Vector2f(100,100), new Vector2f(256,256)));
+
+        GameObject obj1 = new GameObject("Object 1", new Transform(new Vector2f(100, 100), new Vector2f(256, 256)));
         obj1.addComponent(new SpriteRenderer(sprite.getSprite(0)));
         this.addGameObjectToScene(obj1);
 
-
-}
+    }
 
     private void loadResources() {
         AssetPool.getShader("src/main/assets/default.glsl");
 
-        AssetPool.addSpritesheet("assets/images/spritesheet.png",
-                new SpriteSheet(AssetPool.getTexture("assets/images/spritesheet.png"),
-                        16, 16, 28, 0));
+        AssetPool.addSpritesheet("src/main/assets/images/spritesheet.png",
+                new SpriteSheet(AssetPool.getTexture("src/main/assets/images/spritesheet.png"),
+                        16, 16, 26, 0));
 
     }
 

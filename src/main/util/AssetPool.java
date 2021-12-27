@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AssetPool {
-    private static Map<String, Shader> shaders = new HashMap<>();
-    private static Map<String, Texture> textures = new HashMap<>();
-    private static Map<String, SpriteSheet> spritesheets = new HashMap<>();
+    public static Map<String, Shader> shaders = new HashMap<>();
+    public static Map<String, Texture> textures = new HashMap<>();
+    public static Map<String, SpriteSheet> spritesheets = new HashMap<>();
 
     public static Shader getShader(String resourceName) {
         File file = new File(resourceName);
@@ -45,11 +45,14 @@ public class AssetPool {
 
     public static SpriteSheet getSpritesheet(String resourceName) {
         File file = new File(resourceName);
+
+        //debug
+        System.out.println("path" + file.getAbsolutePath()  );
         if (!AssetPool.spritesheets.containsKey(file.getAbsolutePath())) {
+            System.out.println("fail");
             assert false : "Error: Tried to access spritesheet '" + resourceName + "' and it has not been added to asset pool.";
         }
-        return AssetPool.spritesheets.getOrDefault(file.getAbsolutePath(), null);
-    }
+        return AssetPool.spritesheets.getOrDefault(file.getAbsolutePath(), null);    }
 }
 
 // todo :: Nullpointer 오류 해결하기 // 배열과 vector2f 관련해서 찾아볼 것. 기한 : 12 / 21 18:20 KST

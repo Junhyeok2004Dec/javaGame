@@ -28,6 +28,7 @@ public class RenderBatch {
     private final int TEX_COORDS_SIZE = 2;
     private final int TEX_ID_SIZE = 1;
 
+
     private final int POS_OFFSET = 0;
     private final int COLOR_OFFSET = POS_OFFSET + POS_SIZE * Float.BYTES;
     private final int TEX_COORDS_OFFSET = COLOR_OFFSET + COLOR_SIZE * Float.BYTES;
@@ -35,11 +36,12 @@ public class RenderBatch {
     private final int VERTEX_SIZE = 9;
     private final int VERTEX_SIZE_BYTES = VERTEX_SIZE * Float.BYTES;
 
+
     private SpriteRenderer[] sprites;
     private int numSprites;
     private boolean hasRoom;
     private float[] vertices;
-    private int[] texSlots = {0,1,2,3,4,5,6,7};
+    private int[] texSlots = {0, 1, 2, 3, 4, 5, 6, 7};
 
     private List<Texture> textures;
     private int vaoID, vboID;
@@ -64,25 +66,22 @@ public class RenderBatch {
     }
 
     public void start() {
-        // generate and bind a vertex array obj
-
+        // Generate and bind a Vertex Array Object
         vaoID = glGenVertexArrays();
         glBindVertexArray(vaoID);
 
         // Allocate space for vertices
-
         vboID = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
         glBufferData(GL_ARRAY_BUFFER, vertices.length * Float.BYTES, GL_DYNAMIC_DRAW);
 
-        // Create & upload indices buf
+        // Create and upload indices buffer
         int eboID = glGenBuffers();
         int[] indices = generateIndices();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
 
-
-        //Enable the buffer attribute pointers
+        // Enable the buffer attribute pointers
         glVertexAttribPointer(0, POS_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, POS_OFFSET);
         glEnableVertexAttribArray(0);
 
@@ -94,8 +93,6 @@ public class RenderBatch {
 
         glVertexAttribPointer(3, TEX_ID_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, TEX_ID_OFFSET);
         glEnableVertexAttribArray(3);
-
-
     }
 
     public void addSprite(SpriteRenderer spr) {
@@ -119,6 +116,47 @@ public class RenderBatch {
         if (numSprites >= this.maxBatchSize) {
             this.hasRoom = false;
         }
+    }
+
+
+    public void render() {
+
+        // Rebuffer all data every frame
+
+        glBindBuffer(GL_ARRAY_BUFFER, vboID);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+
+
+        // Shader 사용
+
+        shader.use();
+        shader.uploadMat4f("uProjection", Window.getScene().camera().getProjectionMatrix());
+        shader.uploadMat4f("uView", Window.getScene().camera().getViewMatrix());
+
+        for (int i = 0; i < textures.size(); i++) {
+            glActiveTexture(GL_TEXTURE0 + i + 1);
+            textures.get(i).bind();
+        }
+        shader.uploadIntArray("uTextures", texSlots);
+
+        glBindVertexArray(vaoID);
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+
+        glDrawElements(GL_TRIANGLES, this.numSprites * 6, GL_UNSIGNED_INT, 0);
+
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+
+        glBindVertexArray(0);
+
+        for (int i = 0; i < textures.size(); i++) {
+            textures.get(i).unbind();
+        }
+
+        shader.detach();
+
+
     }
 
     private void loadVertexProperites(int index) {
@@ -172,51 +210,12 @@ public class RenderBatch {
             vertices[offset + 7] = texCoords[i].y;
 
 
-
             //
             vertices[offset + 8] = texId;
 
 
-
-
             offset += VERTEX_SIZE;
         }
-
-    }
-
-    public void render() {
-
-        // Rebuffer all data every frame
-
-        glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
-
-
-        // Shader 사용
-
-        shader.use();
-        shader.uploadMat4f("uProjection", Window.getScene().camera().getProjectionMatrix());
-        shader.uploadMat4f("uView", Window.getScene().camera().getViewMatrix());
-
-        for (int i = 0; i<textures.size(); i++) {
-            glActiveTexture(GL_TEXTURE0 + i + 1);
-            textures.get(i).bind();
-        }
-        shader.uploadIntArray("uTextures",texSlots);
-
-        glBindVertexArray(vaoID);
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
-
-        glDrawElements(GL_TRIANGLES, this.numSprites * 6, GL_UNSIGNED_INT, 0);
-
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
-
-        glBindVertexArray(0);
-
-        shader.detach();
-
 
     }
 
@@ -225,13 +224,13 @@ public class RenderBatch {
         // 6   [indices /(per) quad]
         int[] elements = new int[6 * maxBatchSize];
         for (int i = 0; i < maxBatchSize; i++) {
-            loadElementINdices(elements, i);
+            loadElementIndices(elements, i);
         }
 
         return elements;
     }
 
-    private void loadElementINdices(int[] elements, int index) {
+    private void loadElementIndices(int[] elements, int index) {
 
         int offsetArrayIndex = 6 * index;
         int offset = 4 * index;
