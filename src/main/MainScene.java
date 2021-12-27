@@ -8,6 +8,10 @@ import org.joml.Vector2f;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class MainScene extends Scene {
+
+
+    private GameObject obj1, obj2;
+
     public MainScene() {
 
 
@@ -19,15 +23,20 @@ public class MainScene extends Scene {
 
         loadResources();
 
-        this.camera = new Camera(new Vector2f(-250, 0));
+        this.camera = new Camera(new Vector2f(0, 0));
 
 
         SpriteSheet sprite = AssetPool.getSpritesheet("src/main/assets/images/spritesheet.png");
 
 
-        GameObject obj1 = new GameObject("Object 1", new Transform(new Vector2f(100, 100), new Vector2f(256, 256)));
+        obj1 = new GameObject("Object 1", new Transform(new Vector2f(100, 100), new Vector2f(256, 256)));
         obj1.addComponent(new SpriteRenderer(sprite.getSprite(0)));
         this.addGameObjectToScene(obj1);
+
+
+        obj2 = new GameObject("Object 2", new Transform(new Vector2f(-180, 180), new Vector2f(256, 256)));
+        obj2.addComponent(new SpriteRenderer(sprite.getSprite(27)));
+        this.addGameObjectToScene(obj2);
 
     }
 
@@ -36,22 +45,25 @@ public class MainScene extends Scene {
 
         AssetPool.addSpritesheet("src/main/assets/images/spritesheet.png",
                 new SpriteSheet(AssetPool.getTexture("src/main/assets/images/spritesheet.png"),
-                        16, 16, 26, 0));
+                        16, 16, 28, 0));
 
     }
 
     @Override
     public void update(float dt) {
+        obj1.transform.position.x += 10 * dt;
+        obj2.transform.position.x += 9 * dt;
 
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
-            camera.position.x += 100f * dt;
+            camera.position.x += 1000f * dt;
+
+
         } else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
-            camera.position.x -= 100f * dt;
-        }
-        if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
-            camera.position.y += 100f * dt;
+            camera.position.x -= 1000f * dt;
+        } else if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
+            camera.position.y += 1000f * dt;
         } else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
-            camera.position.y -= 100f * dt;
+            camera.position.y -= 1000f * dt;
         }
 
         for (GameObject go : this.gameObjects) {

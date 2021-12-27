@@ -54,18 +54,3 @@ public class AssetPool {
         }
         return AssetPool.spritesheets.getOrDefault(file.getAbsolutePath(), null);    }
 }
-
-// todo :: Nullpointer 오류 해결하기 // 배열과 vector2f 관련해서 찾아볼 것. 기한 : 12 / 21 18:20 KST
-//  Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.nio.ByteBuffer.position()" because "buffer" is null
-//	at org.lwjgl.system.MemoryUtil.memAddress(MemoryUtil.java:737)
-//	at org.lwjgl.stb.STBImage.stbi_image_free(STBImage.java:732)
-//	at main.assets.Texture.<init>(Texture.java:81)
-//	at main.util.AssetPool.getTexture(AssetPool.java:33)
-//	at main.MainScene.loadResources(MainScene.java:38)
-//	at main.MainScene.init(MainScene.java:20)
-//	at main.Window.changeScene(Window.java:65)
-//	at main.Window.init(Window.java:181)
-//	at main.Window.run(Window.java:123)
-//	at main.Main.main(Main.java:8)
-
-// 해결하기

@@ -62,7 +62,7 @@ public class Texture {
 
         //stbi_load filepath 절대 경로 확인 ... 1
 
-        image = stbi_load("G:\\JAVAG\\src\\main\\assets\\image\\spritesheet.png", width, height, channels, 0);
+        image = stbi_load("src\\main\\assets\\image\\spritesheet.png", width, height, channels, 0);
 
         if (image != null) {
             this.width = width.get(0);
