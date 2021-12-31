@@ -45,11 +45,7 @@ public class AssetPool {
 
     public static SpriteSheet getSpritesheet(String resourceName) {
         File file = new File(resourceName);
-
-        //debug
-        System.out.println("path" + file.getAbsolutePath()  );
         if (!AssetPool.spritesheets.containsKey(file.getAbsolutePath())) {
-            System.out.println("fail");
             assert false : "Error: Tried to access spritesheet '" + resourceName + "' and it has not been added to asset pool.";
         }
         return AssetPool.spritesheets.getOrDefault(file.getAbsolutePath(), null);    }

@@ -18,24 +18,27 @@ public class Window {
 
     //color
     public float r,g,b,a;
-    private boolean fadeBlack = false;
 
+
+    private boolean fullscreen = false;
     private static Window window = null;
 
     //Scene(Stage 구현 등)
     private static Scene currentScene;
 
     private void colorReset() {
-        r = 1;
-        g = 1;
-        b = 1;
-        a = 1;
+        r = 0.5f;
+        g = 0.6f;
+        b = 0.7f;
+        a = 0.5f;
     }
 
 
     private Window() {
         this.width = 1280;
         this.height = 720;
+
+
         this.title = "Jeil RPG";
         colorReset();
 
@@ -155,7 +158,10 @@ public class Window {
 
         // Window Create
 
-        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);
+
+
+        //Window size / etc settings
+        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, glfwGetPrimaryMonitor(), NULL);
 
         if (glfwWindow == NULL) {
             throw new IllegalStateException("Failed to create the GLFW window");
@@ -178,7 +184,18 @@ public class Window {
         //Window 보이게
         glfwShowWindow(glfwWindow);
 
+
+
+
+
+
+        //set OpenGL content // context
+        // The external of the OpenGL(same that lib)
+
         GL.createCapabilities();
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
         Window.changeScene(0);
 

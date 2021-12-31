@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="imgui-app-1.86.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/imgui-app-1.86.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
