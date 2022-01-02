@@ -1,6 +1,8 @@
 package main;
 
 
+import main.Input.KeyListener;
+import main.Input.MouseListener;
 import main.util.Time;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;

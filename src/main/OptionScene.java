@@ -1,5 +1,7 @@
 package main;
 
+import main.Input.KeyListener;
+
 import java.awt.event.KeyEvent;
 
 public class OptionScene extends Scene{
