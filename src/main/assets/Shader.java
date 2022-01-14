@@ -28,6 +28,7 @@ public class Shader {
         try {
 
 
+
             //default.glsl 분석 코드
             String source = new String(Files.readAllBytes(Paths.get(filepath)));
             String[] splitString;

@@ -1,6 +1,5 @@
-// input data
-
-:: meta ::
-
-
-//world data that cause world info
+#start{id :: 1}
+width :: 54;
+height :: 54;
+block_id :: 27;
+#end

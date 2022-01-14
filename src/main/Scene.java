@@ -2,6 +2,9 @@ package main;
 
 import main.assets.Renderer;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,9 @@ public abstract class Scene {
     protected List<GameObject> gameObjects = new ArrayList<>();
 
     public static int sceneNum = 1;
+
+    private int mapDatas;
+    //todo::mapdata read
 
 
     public Scene() {
@@ -65,6 +71,31 @@ public abstract class Scene {
 
     public Camera camera(){
         return this.camera;
+    }
+
+    public void mapData(String filepath) {
+
+        try {
+            String sourceMapData = new String(Files.readAllBytes(Paths.get(filepath)));
+            String[] splitString;
+            splitString = sourceMapData.split("");
+
+
+
+
+
+            // 예시 //
+            // #start{id :: 124}
+            // <여기부터 인식>
+
+
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
