@@ -2,7 +2,7 @@ package main;
 
 import main.Input.KeyListener;
 
-import java.awt.event.KeyEvent;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER;
 
 public class MapScene extends Scene {
 
@@ -28,7 +28,7 @@ public class MapScene extends Scene {
 
 
 
-        if (!changingScene && KeyListener.isKeyPressed(KeyEvent.VK_ENTER)) {
+        if (!changingScene && KeyListener.isKeyPressed(GLFW_KEY_ENTER)) {
             changingScene = true;
         }
 

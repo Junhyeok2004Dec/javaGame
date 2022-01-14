@@ -22,11 +22,10 @@ public class Window {
     public float r,g,b,a;
 
 
-    private boolean fullscreen = false;
     private static Window window = null;
 
     //Scene(Stage 구현 등)
-    private static Scene currentScene;
+    private static Scene currentScene = null;
 
     private void colorReset() {
         r = 0.5f;
@@ -36,66 +35,15 @@ public class Window {
     }
 
 
-    private Window() {
-        this.width = 1280;
-        this.height = 720;
+    Window() {
+        this.width = 1600;
+        this.height = 900;
 
 
-        this.title = "Jeil RPG";
+        this.title = "RENDOG RPG МОСКВЫ БЕТА (МОЖЕТ ВЕСТОР ВЫПУСК)";
         colorReset();
 
     }
-
-        public static void changeScene(int newScene) {
-
-
-
-        /*
-        Scene 구성
-
-        -1 : default(씬 없음)
-        0 : 메인화면
-        41 : data창
-        42 : map 창
-        99 : 옵션창
-         */
-
-
-
-            switch (newScene) {
-                case 0:
-                    currentScene = new MainScene();
-                    currentScene.init();
-                    currentScene.start();
-                    break;
-                case 41:
-                    currentScene = new OptionScene();
-                    currentScene.init();
-                    currentScene.start();
-                    break;
-
-                case 42:
-                    currentScene = new MapScene();
-                    currentScene.init();
-                    currentScene.start();
-                    break;
-
-                case 99:
-                    currentScene = new OptionScene();
-                    currentScene.init();
-                    currentScene.start();
-                    break;
-
-                default:
-                    assert false : "Unknown scene / levels'" + newScene + "'";
-                    break;
-
-            }
-
-        }
-
-
-
 
 
 
@@ -154,7 +102,7 @@ public class Window {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
+        glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
 
 
 
@@ -199,7 +147,13 @@ public class Window {
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
+
+
         Window.changeScene(0);
+
+
+
+
 
 
 
@@ -213,6 +167,14 @@ public class Window {
         while (!glfwWindowShouldClose(glfwWindow))
         {
             glfwPollEvents();
+
+
+
+            if (KeyListener.isKeyPressed(GLFW_KEY_ESCAPE)/* && ( getter 함수 설정 )*/) {
+
+
+                changeScene(99);
+            }
 
 
 
@@ -231,13 +193,7 @@ public class Window {
 
 
 
-            //graphic work -- 하얀색 -> 검정색 변화
 
-
-            if (KeyListener.isKeyPressed(GLFW_KEY_SPACE)) {
-                changeScene(0   );
-
-            }
 
             glfwSwapBuffers(glfwWindow);
 
@@ -253,6 +209,46 @@ public class Window {
         }
 
     }
+
+    public static void changeScene(int newScene) {
+
+
+
+        /*
+        Scene 구성
+
+        0 : 메인화면
+        41 : data창
+        42 : map 창
+        99 : 옵션창
+         */
+
+
+        switch (newScene) {
+            case 0:
+
+                currentScene = new MainScene();
+                currentScene.init();
+
+                currentScene.start();
+                break;
+
+            case 99:
+
+                currentScene = new OptionScene();
+
+                break;
+
+            default:
+                assert false : "Unknown scene / levels'" + newScene + "'";
+                break;
+
+        }
+
+    }
+
+
+
 
 
 }

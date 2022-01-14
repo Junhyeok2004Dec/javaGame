@@ -1,12 +1,11 @@
 package main.Input;
 
-import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
-import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
+import static org.lwjgl.glfw.GLFW.*;
 
 public class KeyListener {
 
     private static KeyListener instance;
-    private boolean keyPressed[] = new boolean[1000];
+    private final boolean[] keyPressed = new boolean[1000];
 
     private KeyListener() {
 

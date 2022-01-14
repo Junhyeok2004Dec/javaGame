@@ -1,8 +1,8 @@
 package main;
 
-import main.Input.KeyListener;
-
-import java.awt.event.KeyEvent;
+import main.assets.components.SpriteSheet;
+import main.util.AssetPool;
+import org.joml.Vector2f;
 
 public class OptionScene extends Scene{
 
@@ -17,17 +17,24 @@ public class OptionScene extends Scene{
     @Override
     public void init() {
 
+        sceneNum = 99;
+        load();
+        this.camera = new Camera(new Vector2f(0,0));
     }
 
+    private void load() {
+
+
+        AssetPool.getShader("src/main/assets/default.glsl");
+
+        AssetPool.addSpritesheet("src/main/assets/images/spritesheet.png", new SpriteSheet(AssetPool.getTexture("src/main/assets/images/spritesheet.png"), 16, 16, 28, 0));
+
+    }
 
     @Override
     public void update(float dt) {
 
         System.out.println("" + (1.0f / dt) + "FPS");
-
-        if (!changingScene && KeyListener.isKeyPressed(KeyEvent.VK_ENTER)){
-            changingScene = true;
-        }
 
         if (changingScene && timeToChangeScene > 0)
         {
@@ -40,5 +47,6 @@ public class OptionScene extends Scene{
         {
 
         }
+
     }
 }

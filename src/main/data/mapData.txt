@@ -1,0 +1,6 @@
+// input data
+
+:: meta ::
+
+
+//world data that cause world info

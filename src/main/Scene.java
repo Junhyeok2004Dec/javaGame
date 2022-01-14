@@ -5,12 +5,20 @@ import main.assets.Renderer;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// todo :: fetch the Scene and worldmap
+// main.world.World
+
+
+
 public abstract class Scene {
 
     protected Renderer renderer = new Renderer();
     protected Camera camera;
     private boolean isRunning = false;
     protected List<GameObject> gameObjects = new ArrayList<>();
+
+    public static int sceneNum = 1;
 
 
     public Scene() {
@@ -58,5 +66,7 @@ public abstract class Scene {
     public Camera camera(){
         return this.camera;
     }
+
+
 
 }
