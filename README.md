@@ -1,20 +1,15 @@
-#JAVAGAME
+// Nov 2021
+// Dec 2021
+// Jan 2022
 
-Reference // LWJGL 참고(OpenGL, awt 일부 사용 및 ...)
+in study Course
+===============
+
+
+used
 ====
-(추후 추가 예정)
 
-#GAME
 
-#RESOURCE
+Main :: JAVA
+used :: LWJGL(OPENGL)
 
-lwjgl (opengl :: glfw ...)
-
-image resource
-:: maybe a coderm, ain't there spot, guess that. ::
-
-#ABOUTME
-
-jeil.jje.hs.kr
-
-Dec,2004
