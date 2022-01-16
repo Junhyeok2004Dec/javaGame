@@ -28,7 +28,7 @@ in vec4 fColor;
 in vec2 fTexCoords;
 in float fTexId;
 
-uniform sampler2D uTextures[8];
+uniform sampler2D uTextures[16];
 
 out vec4 color;
 

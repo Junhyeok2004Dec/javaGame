@@ -83,6 +83,8 @@ public class Window {
         glfwTerminate();
         glfwSetErrorCallback(null).free();
 
+
+
     }
 
     public void init() {
@@ -100,9 +102,9 @@ public class Window {
 
         // GLFW configure
         glfwDefaultWindowHints();
-        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
+        glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
 
 
@@ -206,6 +208,11 @@ public class Window {
             endTime = Time.getTime();
             dt = endTime - beginTime;
             beginTime = endTime;
+
+            if (glfwGetKey(glfwWindow, GLFW_KEY_ESCAPE) == 1) {
+                glfwWindowShouldClose(glfwWindow);
+
+            }
         }
 
     }

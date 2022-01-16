@@ -23,8 +23,11 @@ public abstract class Scene {
 
     public static int sceneNum = 1;
 
-    private int mapDatas;
-    //todo::mapdata read
+
+
+    private String[] dataSplit;
+
+
 
 
     public Scene() {
@@ -76,9 +79,30 @@ public abstract class Scene {
     public void mapData(String filepath) {
 
         try {
-            String sourceMapData = new String(Files.readAllBytes(Paths.get(filepath)));
-            String[] splitString;
-            splitString = sourceMapData.split("");
+
+            String data = new String(Files.readAllBytes(Paths.get(filepath)));
+            dataSplit = data.split("\\s+");
+
+            int index = data.indexOf("#start");
+            int eol = data.indexOf(("#end"), index);
+
+            String outputData = data.substring(index,eol);
+
+
+            for (int i =0; i < dataSplit.length; i++) {
+
+                // the Worldmap Tile data will loaded by file,
+                // WorldGen.java is perform that functions.
+                // TODO :: WorldGen.java check 2022 01 17 02:00
+
+
+            }
+
+
+
+
+
+
 
 
 
@@ -93,6 +117,10 @@ public abstract class Scene {
 
 
         } catch (IOException e) {
+
+
+
+            System.out.println("월드 데이터가 손상/손실되었습니다. 프로그램 재설치가 요구됩니다.");
             e.printStackTrace();
         }
 

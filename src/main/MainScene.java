@@ -6,10 +6,6 @@ import main.assets.components.SpriteSheet;
 import main.util.AssetPool;
 import org.joml.Vector2f;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static org.lwjgl.glfw.GLFW.*;
 
 public class MainScene extends Scene {

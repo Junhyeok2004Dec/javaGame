@@ -41,7 +41,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
     private int numSprites;
     private boolean hasRoom;
     private float[] vertices;
-    private int[] texSlots = {0, 1, 2, 3, 4, 5, 6, 7};
+    private int[] texSlots = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
     private List<Texture> textures;
     private int vaoID, vboID;
@@ -275,7 +275,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
     }
 
     public boolean hasTextureRoom() {
-        return this.textures.size() < 8;
+        return this.textures.size() < 16;
     }
 
     public boolean hasTexture(Texture texture) {
