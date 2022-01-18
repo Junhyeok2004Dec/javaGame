@@ -13,10 +13,10 @@ used
 Main :: JAVA
 used :: LWJGL(OPENGL)
 
-2022 01 17 03:00 // pre-0.0.1
+2022 01 17 03:00 // pre-0.1.0
 
 
-Under Construction
+mapping test
 
-기초 틀 잡는중.
+월드맵 구현중
 
