@@ -1,6 +1,7 @@
 package main;
 
 import main.assets.Renderer;
+import main.world.WorldGen;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,6 +23,11 @@ public abstract class Scene {
     protected List<GameObject> gameObjects = new ArrayList<>();
 
     public static int sceneNum = 1;
+
+    private int mapWidth = 1;
+    private int mapHeight = 1;
+
+    int obj = 28;
 
 
 
@@ -78,22 +84,39 @@ public abstract class Scene {
 
     public void mapData(String filepath) {
 
+        WorldGen worldMap = new WorldGen();
+
         try {
+
+
 
             String data = new String(Files.readAllBytes(Paths.get(filepath)));
             dataSplit = data.split("\\s+");
 
+
+            mapWidth = Integer.parseInt(dataSplit[0]);
+            mapHeight = Integer.parseInt(dataSplit[1]);
+
+
+
+
+
+
+
+
             int index = data.indexOf("#start");
+
             int eol = data.indexOf(("#end"), index);
 
-            String outputData = data.substring(index,eol);
 
 
             for (int i =0; i < dataSplit.length; i++) {
 
-                // the Worldmap Tile data will loaded by file,
-                // WorldGen.java is perform that functions.
-                // TODO :: WorldGen.java check 2022 01 17 02:00
+                worldMap.worldGen(mapWidth, mapHeight, obj);
+
+
+
+
 
 
             }
@@ -107,20 +130,13 @@ public abstract class Scene {
 
 
 
-
-            // 예시 //
-            // #start{id :: 124}
-            // <여기부터 인식>
-
-
-
-
-
         } catch (IOException e) {
 
 
 
-            System.out.println("월드 데이터가 손상/손실되었습니다. 프로그램 재설치가 요구됩니다.");
+            System.out.println("월드 데이터가 손상/손실되었습니다. 맵데이터 재설치가 요구됩니다. \n 임의의 변형은 오류를 가져올 수 있습니다.");
+
+
             e.printStackTrace();
         }
 

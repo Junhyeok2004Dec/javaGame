@@ -40,7 +40,7 @@ public class MainScene extends Scene {
 
 
 
-
+        mapData("src/main/data/Map_1.txt");
 
 
         for(int i = 0; i < totalObj; i++) {
@@ -60,6 +60,8 @@ public class MainScene extends Scene {
 
 
 
+
+
     }
 
     private void loadResources() {
@@ -68,6 +70,9 @@ public class MainScene extends Scene {
         AssetPool.addSpritesheet("src/main/assets/images/spritesheet.png",
                 new SpriteSheet(AssetPool.getTexture("src/main/assets/images/spritesheet.png"),
                         16, 16, 28, 0));
+
+
+
 
     }
 

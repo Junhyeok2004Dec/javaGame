@@ -11,16 +11,15 @@ import org.joml.Vector2f;
 public class WorldGen{
 
 
-    private int totalObjCount = 128;
+    private int totalObjCount = 260;
 
 
 
 
-    private byte[] tiles;
-    private int width,height;
+    private int blockSize = 32;
 
 
-    protected SpriteSheet sprite;
+    private SpriteSheet sprite;
     protected GameObject[] objects = new GameObject[totalObjCount];
 
 
@@ -33,24 +32,57 @@ public class WorldGen{
         }
     };
 
-    public void worldGen(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public WorldGen() {
+    }
 
-        AssetPool.addSpritesheet("src/main/assets/images/asciiA.bmp", new SpriteSheet(AssetPool.getTexture("src/main/assets/images/ascii.bmp"),
-                32,32,totalObjCount,0));
+    public void worldGen(int width, int height, int objectShift) {
 
-        for (int i = 0; i < totalObjCount; i++) {
+        AssetPool.getShader("src/main/assets/default.glsl");
 
-            objects[i] = new GameObject("MapBlockID" + i,
-
-                    new Transform(new Vector2f(32*i, 32* Math.abs(i / 32)),
-                            new Vector2f(width, height)), 1);
+        AssetPool.addSpritesheet("src/main/assets/images/font.png", new SpriteSheet(AssetPool.getTexture("src/main/assets/images/font.png"),
+                blockSize,blockSize,totalObjCount,0));
 
 
-            objects[i].addComponent(new SpriteRenderer(sprite.getSprite(i)));
-            scene.addGameObjectToScene(objects[i]);
+        sprite = AssetPool.getSpritesheet("src/main/assets/images/font.png");
+
+
+
+
+
+
+
+        //worlddata 분배 방식
+
+        // a(11) a(12) a(13) .. a(1  width)
+        // a(21) ...
+        // ..
+        // a(height 1) ...      a(height width)
+
+        // for matrix system
+
+
+        // 주의사항 :: height 와 width 의 순서는 각각 i와 j로 매칭됩니다.
+        // 가로를 j로 설정하였습니다. 세로는 j
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+
+                objects[j + height*i] = new GameObject("MapBlock" + j + height*i,
+
+                        new Transform(new Vector2f(blockSize * i, blockSize * j),
+                                new Vector2f(blockSize, blockSize)),1
+                        );
+
+                objects[j + height*i].addComponent(new SpriteRenderer(sprite.getSprite(j+height*i))); // getSprite( '여기 안에 입력받은 data 넣을 것' )
+                scene.addGameObjectToScene(objects[j + height*i]);
+
+
+
+
+
+            }
         }
+
+
 
     }
 
