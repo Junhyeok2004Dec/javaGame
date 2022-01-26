@@ -24,8 +24,6 @@ public abstract class Scene {
 
     public static int sceneNum = 1;
 
-    private int mapWidth = 1;
-    private int mapHeight = 1;
 
     int obj = 28;
 
@@ -94,8 +92,8 @@ public abstract class Scene {
             dataSplit = data.split("\\s+");
 
 
-            mapWidth = Integer.parseInt(dataSplit[0]);
-            mapHeight = Integer.parseInt(dataSplit[1]);
+            int mapWidth = Integer.parseInt(dataSplit[0]);
+            int mapHeight = Integer.parseInt(dataSplit[1]);
 
 
 
@@ -108,7 +106,10 @@ public abstract class Scene {
 
             int eol = data.indexOf(("#end"), index);
 
-
+            System.out.println(mapHeight);
+            System.out.println(mapWidth);
+            System.out.println(obj);
+            System.out.println(dataSplit.length);
 
             for (int i =0; i < dataSplit.length; i++) {
 

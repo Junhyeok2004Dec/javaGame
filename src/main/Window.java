@@ -36,8 +36,8 @@ public class Window {
 
 
     Window() {
-        this.width = 1600;
-        this.height = 900;
+        this.width = 1920;
+        this.height = 1080;
 
 
         this.title = "RENDOG RPG МОСКВЫ БЕТА (МОЖЕТ ВЕСТОР ВЫПУСК)";

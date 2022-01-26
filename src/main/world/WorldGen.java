@@ -8,12 +8,10 @@ import main.assets.components.SpriteSheet;
 import main.util.AssetPool;
 import org.joml.Vector2f;
 
-public class WorldGen{
+public class WorldGen {
 
 
-    private int totalObjCount = 260;
-
-
+    private int totalObjCount = 256;
 
 
     private int blockSize = 32;
@@ -21,8 +19,6 @@ public class WorldGen{
 
     private SpriteSheet sprite;
     protected GameObject[] objects = new GameObject[totalObjCount];
-
-
 
 
     Scene scene = new Scene() {
@@ -40,18 +36,13 @@ public class WorldGen{
         AssetPool.getShader("src/main/assets/default.glsl");
 
         AssetPool.addSpritesheet("src/main/assets/images/font.png", new SpriteSheet(AssetPool.getTexture("src/main/assets/images/font.png"),
-                blockSize,blockSize,totalObjCount,0));
+                blockSize, blockSize, totalObjCount, 0));
 
 
         sprite = AssetPool.getSpritesheet("src/main/assets/images/font.png");
 
 
-
-
-
-
-
-        //worlddata 분배 방식
+        //worldData 분배 방식
 
         // a(11) a(12) a(13) .. a(1  width)
         // a(21) ...
@@ -66,22 +57,21 @@ public class WorldGen{
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
 
-                objects[j + height*i] = new GameObject("MapBlock" + j + height*i,
+                objects[j + height * i] = new GameObject("MapBlock" + j + height * i,
 
                         new Transform(new Vector2f(blockSize * i, blockSize * j),
-                                new Vector2f(blockSize, blockSize)),1
-                        );
+                                new Vector2f(blockSize, blockSize)), 1
+                );
 
-                objects[j + height*i].addComponent(new SpriteRenderer(sprite.getSprite(j+height*i))); // getSprite( '여기 안에 입력받은 data 넣을 것' )
-                scene.addGameObjectToScene(objects[j + height*i]);
+                objects[j + height * i].addComponent(new SpriteRenderer(sprite.getSprite(j + height * i))); // getSprite( '여기 안에 입력받은 data 넣을 것' )
+                scene.addGameObjectToScene(objects[j + height * i]);
 
 
-
+                System.out.println("object\t" + (j + height * i) + "is Created");
 
 
             }
         }
-
 
 
     }

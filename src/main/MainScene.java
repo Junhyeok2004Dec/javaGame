@@ -36,11 +36,12 @@ public class MainScene extends Scene {
 
         sprite = AssetPool.getSpritesheet("src/main/assets/images/spritesheet.png");
 
+        mapData("src/main/data/Map_1.txt");
         GameObject[] objects = new GameObject[totalObj];
 
 
 
-        mapData("src/main/data/Map_1.txt");
+
 
 
         for(int i = 0; i < totalObj; i++) {
