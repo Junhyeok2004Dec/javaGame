@@ -8,7 +8,12 @@ import main.assets.components.SpriteSheet;
 import main.util.AssetPool;
 import org.joml.Vector2f;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class WorldGen {
+
 
 
     private int totalObjCount = 256;
@@ -17,16 +22,11 @@ public class WorldGen {
     private int blockSize = 32;
 
 
+
     private SpriteSheet sprite;
     protected GameObject[] objects = new GameObject[totalObjCount];
 
 
-    Scene scene = new Scene() {
-        @Override
-        public void update(float dt) {
-
-        }
-    };
 
     public WorldGen() {
     }
@@ -75,6 +75,7 @@ public class WorldGen {
 
 
     }
+
 
 
 }
