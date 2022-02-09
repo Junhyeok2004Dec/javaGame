@@ -29,7 +29,7 @@ public class Shader {
 
 
 
-            //default.glsl 분석 코드
+            //glsl Shader 분석 코드
             String source = new String(Files.readAllBytes(Paths.get(filepath)));
             String[] splitString;
             splitString = source.split("(#type)( )+([a-zA-Z]+)");

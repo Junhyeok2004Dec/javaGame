@@ -44,6 +44,8 @@ public class MainScene extends Scene {
 
 
 
+
+
         for(int i = 0; i < totalObj; i++) {
 
             objects[i] = new GameObject("AutoObject" + i,
@@ -71,6 +73,10 @@ public class MainScene extends Scene {
         AssetPool.addSpritesheet("src/main/assets/images/spritesheet.png",
                 new SpriteSheet(AssetPool.getTexture("src/main/assets/images/spritesheet.png"),
                         16, 16, 28, 0));
+
+
+
+        // ResourceManager 참고
 
 
 

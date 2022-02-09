@@ -1,25 +1,13 @@
 package main;
 
 import main.assets.Renderer;
-import main.world.WorldGen;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 
-// todo :: fetch the Scene and worldmap
-// main.world.World
-
-
 
 public abstract class Scene {
-
-    int obj = 22;
-
-    private String[] dataSplit;
 
     protected Renderer renderer = new Renderer();
     protected Camera camera;
@@ -28,71 +16,6 @@ public abstract class Scene {
 
     public static int sceneNum = 1;
 
-
-    WorldGen gen = new WorldGen();
-
-
-
-    public void mapData(String filepath) {
-
-        try {
-
-
-
-            String data = new String(Files.readAllBytes(Paths.get(filepath)));
-            dataSplit = data.split("\\s+");
-
-
-            int mapWidth = Integer.parseInt(dataSplit[0]);
-            int mapHeight = Integer.parseInt(dataSplit[1]);
-
-
-
-
-
-
-
-
-            int index = data.indexOf("#start");
-
-            int eol = data.indexOf(("#end"), index);
-
-            System.out.println(mapHeight);
-            System.out.println(mapWidth);
-            System.out.println(obj);
-            System.out.println(dataSplit.length);
-
-            for (int i =0; i < dataSplit.length; i++) {
-
-                worldGen(mapWidth, mapHeight, obj);
-
-
-
-
-
-
-            }
-
-
-
-
-
-
-
-
-
-
-        } catch (IOException e) {
-
-
-
-            System.out.println("월드 데이터가 손상/손실되었습니다. 맵데이터 재설치가 요구됩니다. \n 임의의 변형은 오류를 가져올 수 있습니다.");
-
-
-            e.printStackTrace();
-        }
-
-    }
 
     public Scene() {
 

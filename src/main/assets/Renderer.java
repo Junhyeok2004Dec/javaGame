@@ -3,6 +3,7 @@ package main.assets;
 import main.GameObject;
 import main.assets.components.SpriteRenderer;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 public class Renderer {
     private final int MAX_BATCH_SIZE = 1024;
     private List<RenderBatch> batches;
+
+    private Graphics2D graphics2D;
 
     public Renderer() {
         this.batches = new ArrayList<>();
@@ -50,5 +53,9 @@ public class Renderer {
         for (RenderBatch batch : batches) {
             batch.render();
         }
+    }
+
+    public Graphics2D getGraphics() {
+        return graphics2D;
     }
 }

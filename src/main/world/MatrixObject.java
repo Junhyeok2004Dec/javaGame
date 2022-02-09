@@ -8,11 +8,7 @@ import main.assets.components.SpriteSheet;
 import main.util.AssetPool;
 import org.joml.Vector2f;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-public class WorldGen {
+public class MatrixObject {
 
 
 
@@ -28,10 +24,13 @@ public class WorldGen {
 
 
 
-    public WorldGen() {
+    public MatrixObject() {
     }
 
-    public void worldGen(int width, int height, int objectShift) {
+    public void worldGen(int width, int height, String shader, String texture) {
+
+
+
 
         AssetPool.getShader("src/main/assets/default.glsl");
 
@@ -64,7 +63,7 @@ public class WorldGen {
                 );
 
                 objects[j + height * i].addComponent(new SpriteRenderer(sprite.getSprite(j + height * i))); // getSprite( '여기 안에 입력받은 data 넣을 것' )
-                scene.addGameObjectToScene(objects[j + height * i]);
+                getScene().addGameObjectToScene(objects[j + height * i]);
 
 
                 System.out.println("object\t" + (j + height * i) + "is Created");
@@ -75,6 +74,10 @@ public class WorldGen {
 
 
     }
+    public Scene getScene() {
+        return this.getScene();
+    }
+
 
 
 
