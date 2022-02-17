@@ -15,7 +15,7 @@ Main :: JAVA \
 used :: LWJGL(OPENGL)
 
 
-2022 02 09 21:40 // pre-0.1.1
+2022 02 17 21:10 // A[0.1.0] Pre
 
 Under Construction
 ==========================
