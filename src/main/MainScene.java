@@ -1,14 +1,16 @@
 package main;
 
 import main.Input.KeyListener;
-import main.assets.components.SpriteRenderer;
 import main.assets.components.SpriteSheet;
 import main.util.AssetPool;
+import main.world.MatrixObject;
 import org.joml.Vector2f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class MainScene extends Scene {
+
+    MatrixObject objectCreate = new MatrixObject();
 
 
 
@@ -26,40 +28,21 @@ public class MainScene extends Scene {
     @Override
     public void init() {
 
+
+        loadResources();
+
+        System.out.println("mainscene");
+
+
+
         sceneNum = 0;
 
 
-        loadResources();
+
 
         this.camera = new Camera(new Vector2f(0, 0));
 
 
-        sprite = AssetPool.getSpritesheet("src/main/assets/images/spritesheet.png");
-
-
-        GameObject[] objects = new GameObject[totalObj];
-
-
-
-
-
-
-
-
-        for(int i = 0; i < totalObj; i++) {
-
-            objects[i] = new GameObject("AutoObject" + i,
-
-                    new Transform(new Vector2f(16*i, 16*i),
-                            new Vector2f(16 , 16))
-                    , 1
-
-                    );
-            objects[i].addComponent(new SpriteRenderer(sprite.getSprite(i)));
-            this.addGameObjectToScene(objects[i]);
-
-
-        }
 
 
 
@@ -68,12 +51,17 @@ public class MainScene extends Scene {
     }
 
     private void loadResources() {
+
+
         AssetPool.getShader("src/main/assets/default.glsl");
 
         AssetPool.addSpritesheet("src/main/assets/images/spritesheet.png",
                 new SpriteSheet(AssetPool.getTexture("src/main/assets/images/spritesheet.png"),
                         16, 16, 28, 0));
 
+
+
+        objectCreate.worldGen();
 
 
         // ResourceManager 참고

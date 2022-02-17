@@ -36,8 +36,8 @@ public class Window {
 
 
     Window() {
-        this.width = 1920;
-        this.height = 1080;
+        this.width = 1600;
+        this.height = 900;
 
 
         this.title = "RENDOG RPG МОСКВЫ БЕТА (МОЖЕТ ВЕСТОР ВЫПУСК)";
@@ -113,7 +113,7 @@ public class Window {
 
 
         //Window size / etc settings
-        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, glfwGetPrimaryMonitor(), NULL);
+        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);
 
         if (glfwWindow == NULL) {
             throw new IllegalStateException("Failed to create the GLFW window");

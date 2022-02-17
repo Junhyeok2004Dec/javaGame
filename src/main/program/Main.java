@@ -1,6 +1,8 @@
-package main;
+package main.program;
 
-public class Main {
+import main.Window;
+
+public class Main implements Settings {
 
     public static void main(String[] args)
     {
