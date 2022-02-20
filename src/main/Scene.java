@@ -63,6 +63,9 @@ public abstract class Scene {
         return this.camera;
     }
 
+    public Scene getScene() {
+        return this;
+    }
 
 
 }
