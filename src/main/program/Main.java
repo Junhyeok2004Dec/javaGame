@@ -1,6 +1,6 @@
 package main.program;
 
-import main.Window;
+import main.scene.Window;
 
 public class Main implements Settings {
 

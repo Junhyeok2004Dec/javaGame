@@ -191,6 +191,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="imgui-app-1.86.0" level="project" />
+    <orderEntry type="library" name="imgui-app-1.86.2" level="project" />
   </component>
 </module>
