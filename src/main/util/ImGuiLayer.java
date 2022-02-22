@@ -1,5 +1,6 @@
 package main.util;
 
+import assets.RegisterMapData;
 import imgui.ImFontAtlas;
 import imgui.ImFontConfig;
 import imgui.ImGui;
@@ -8,13 +9,12 @@ import imgui.callback.ImStrConsumer;
 import imgui.callback.ImStrSupplier;
 import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
+import main.scene.Scene;
 import main.scene.Window;
-
-import java.awt.*;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-public class ImGuiLayer {
+public class ImGuiLayer implements RegisterMapData {
 
     private long glfwWindow;
 
@@ -37,7 +37,7 @@ public class ImGuiLayer {
         // Initialize ImGuiIO config
         final ImGuiIO io = ImGui.getIO();
 
-        io.setIniFilename(null); // We don't want to save .ini file
+        io.setIniFilename("imgui.ini");
         io.setConfigFlags(ImGuiConfigFlags.NavEnableKeyboard); // Navigation with keyboard
         io.setBackendFlags(ImGuiBackendFlags.HasMouseCursors); // Mouse cursors to display while resizing windows etc.
         io.setBackendPlatformName("imgui_java_impl_glfw");
@@ -153,7 +153,7 @@ public class ImGuiLayer {
 
         fontConfig.setPixelSnapH(true);
 
-        fontAtlas.addFontFromFileTTF(String.valueOf(Font.getFont(Font.MONOSPACED)), 32, fontConfig);
+        fontAtlas.addFontFromFileTTF(fontAddress, 32, fontConfig);
 
 
 
@@ -177,11 +177,12 @@ public class ImGuiLayer {
     private static void createContext() {
     }
 
-    public void update(float dt) {
+    public void update(float dt, Scene currentScene) {
         startFrame(dt);
 
         // Any Dear ImGui code SHOULD go between ImGui.newFrame()/ImGui.render() methods
         ImGui.newFrame();
+        currentScene.sceneImgui();
         ImGui.showDemoWindow();
         ImGui.render();
 

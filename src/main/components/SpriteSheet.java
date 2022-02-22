@@ -1,6 +1,5 @@
 package main.components;
 
-import main.renderer.Texture;
 import org.joml.Vector2f;
 
 import java.util.ArrayList;

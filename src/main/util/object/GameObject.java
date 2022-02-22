@@ -47,6 +47,12 @@ public class GameObject {
         return null;
     }
 
+    public void imgui() {
+        for (Component c : components) {
+            c.imgui();
+        }
+    }
+
     public <T extends Component> void removeComponent(Class<T> componentClass) {
         for (int i=0; i < components.size(); i++) {
             Component c = components.get(i);

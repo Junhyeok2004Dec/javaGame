@@ -1,7 +1,8 @@
 package main.renderer;
 
+import main.components.Shader;
+import main.components.Texture;
 import main.scene.Window;
-import main.components.SpriteRenderer;
 import main.util.AssetPool;
 import assets.RegisterMapData;
 import org.joml.Vector2f;

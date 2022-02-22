@@ -1,5 +1,8 @@
 package main.scene;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import imgui.ImGui;
 import main.Input.KeyListener;
 import main.components.SpriteSheet;
 import main.util.AssetPool;
@@ -35,14 +38,20 @@ public class MainScene extends Scene  {
 
         System.out.println("mainscene");
 
-
-
         sceneNum = 0;
-
-
-
-
         this.camera = new Camera(new Vector2f(0, 0));
+
+
+
+        //Gson Component
+
+
+        Gson gson = new GsonBuilder().setPrettyPrinting()
+                .create();
+
+
+        System.out.println(gson.toJson("Hello?"));
+
 
 
 
@@ -107,6 +116,14 @@ public class MainScene extends Scene  {
 
     }
 
+    @Override
+    public void imgui() {
+        ImGui.begin("MapScene window");
+        ImGui.text("text");
+        ImGui.end();
+
+
+    }
 
 
 }

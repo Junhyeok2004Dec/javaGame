@@ -1,7 +1,7 @@
 package main.renderer;
 
+import main.components.Texture;
 import main.util.object.GameObject;
-import main.components.SpriteRenderer;
 
 import java.awt.*;
 import java.util.ArrayList;

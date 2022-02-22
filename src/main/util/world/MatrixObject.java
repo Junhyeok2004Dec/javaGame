@@ -3,7 +3,7 @@ package main.util.world;
 import assets.RegisterMapData;
 import main.util.object.GameObject;
 import main.util.object.Transform;
-import main.components.SpriteRenderer;
+import main.renderer.SpriteRenderer;
 import main.components.SpriteSheet;
 import main.util.AssetPool;
 import org.joml.Vector2f;
@@ -22,7 +22,6 @@ public class MatrixObject implements RegisterMapData {
 
 
     private int totalObjCount = 28;
-
 
     private int blockSize = 16;
 
@@ -93,12 +92,18 @@ public class MatrixObject implements RegisterMapData {
 
 
 
+
                 object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * i, blockSize * j), new Vector2f(blockSize * i, blockSize* j)), 1);
 
                 object[j][i].addComponent(new SpriteRenderer(sprite.getSprite(mapGen.getData(i,j) /* i행 j열 */ )));
 
                 System.out.println(getScene());
                 getScene().addGameObjectToScene(object[j][i]);
+
+
+                // imgui Component
+                getScene().activeGameObject = object[j][i];
+
 
 
 

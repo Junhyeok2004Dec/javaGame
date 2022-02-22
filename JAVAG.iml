@@ -192,5 +192,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="imgui-app-1.86.2" level="project" />
+    <orderEntry type="library" name="google.code.gson" level="project" />
   </component>
 </module>

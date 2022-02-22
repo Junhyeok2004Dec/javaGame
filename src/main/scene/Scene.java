@@ -1,6 +1,7 @@
 package main.scene;
 
 import assets.RegisterMapData;
+import imgui.ImGui;
 import main.util.object.Camera;
 import main.util.object.GameObject;
 import main.renderer.Renderer;
@@ -16,6 +17,8 @@ public abstract class Scene implements RegisterMapData {
     protected Camera camera;
     private boolean isRunning = false;
     protected List<GameObject> gameObjects = new ArrayList<>();
+    public GameObject activeGameObject = null;
+
 
     public static int sceneNum = 1;
 
@@ -68,6 +71,20 @@ public abstract class Scene implements RegisterMapData {
 
     public Scene getScene() {
         return this;
+    }
+
+    public void sceneImgui() {
+        if (activeGameObject != null) {
+            ImGui.begin("Inspector");
+            activeGameObject.imgui();
+            ImGui.end();
+        }
+
+        imgui();
+    }
+
+    public void imgui() {
+
     }
 
 

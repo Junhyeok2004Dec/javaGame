@@ -1,5 +1,6 @@
 package main.scene;
 
+import imgui.ImGui;
 import main.Input.KeyListener;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER;
@@ -17,7 +18,12 @@ public class MapScene extends Scene {
     @Override
     public void init() {
 
+
     }
+
+
+
+
     @Override
     public void update(float dt) {
 
@@ -41,5 +47,7 @@ public class MapScene extends Scene {
         } else if (changingScene) {
 
         }
+
+
     }
 }
