@@ -49,7 +49,7 @@ used
 
 
 Main :: JAVA \
-used :: LWJGL(OPENGL) / ImGui
+used :: LWJGL(OPENGL) / ImGui / Gson
 
 
 2022 02 21 // A[0.1.1]-Pre
