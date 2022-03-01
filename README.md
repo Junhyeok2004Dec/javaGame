@@ -2,22 +2,24 @@
 // Dec 2021
 // Jan 2022
 // Feb 2022
-// Mar 2022 (early March)
+// Mar 2022
 
 in study Course
 ===============
 
-Oct, 2021 ~ Feb 2022(Early March, 2022)
+Oct, 2021 ~ Mar, 2022
 
 1. Default Program Library
 2. Set UI
 3. Main Window
 4. Game System (Default)
 
+
+Main construction :: Imgui, Gson
+
+
 Main Course I
 ==============
-
-(March, 2022 ~ 2022? Early 2023?)
 
 1. Game World
 2. Options
@@ -49,13 +51,14 @@ used
 
 
 Main :: JAVA \
-used :: LWJGL(OPENGL) / ImGui
+used :: LWJGL(OPENGL) / ImGui / Gson
 
 
-2022 02 21 // A[0.1.1]-Pre
+2022 03 01 // [0.0.1]-beta//
 
 Under Construction
 ==========================
 
 ImGui 설정중
+Gson 연동 -> json과 연동
 
