@@ -1,32 +1,24 @@
 package main.scene;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import imgui.ImGui;
 import main.Input.KeyListener;
 import main.components.SpriteSheet;
+import main.renderer.SpriteRenderer;
 import main.util.AssetPool;
 import main.util.object.Camera;
 import main.util.object.GameObject;
-import main.util.world.MatrixObject;
+import main.util.object.Transform;
 import org.joml.Vector2f;
+import org.joml.Vector4f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class MainScene extends Scene  {
 
-    MatrixObject objectCreate = new MatrixObject();
-
-
-
-
-    private int totalObj = 28;
-
-
-    private SpriteSheet sprite;
+    private GameObject object1;
+    private SpriteSheet sprites;
 
     public MainScene() {
-
 
     }
 
@@ -41,22 +33,33 @@ public class MainScene extends Scene  {
         sceneNum = 0;
         this.camera = new Camera(new Vector2f(0, 0));
 
-
-
-        //Gson Component
-
-
-        Gson gson = new GsonBuilder().setPrettyPrinting()
-                .create();
-
-
-        System.out.println(gson.toJson("Hello?"));
+        ObjectManagerTemp();
 
 
 
 
 
 
+
+
+
+
+    }
+
+    private void ObjectManagerTemp() {
+
+
+
+
+        int blockSize = 64;
+        object1 = new GameObject("main",  new Transform(new Vector2f(blockSize, blockSize), new Vector2f(blockSize, blockSize)), 1);
+        SpriteRenderer objSpriteRenderer = new SpriteRenderer();
+        objSpriteRenderer.setColor(new Vector4f(1,0,0,1));
+
+        object1.addComponent(objSpriteRenderer);
+
+        Window.getScene().addGameObjectToScene(object1);
+        Window.getScene().activeGameObject = object1;
 
 
     }
@@ -72,10 +75,12 @@ public class MainScene extends Scene  {
 
 
 
-        objectCreate.worldGen();
+
 
 
         // ResourceManager 참고
+
+
 
 
 
@@ -85,16 +90,11 @@ public class MainScene extends Scene  {
 
     //sprite animatione
 
-    private int spriteIndex = 0;
-    private float spriteAnimationTime = 0.01f;
-    private float spriteAnimationTimeLeft = 0.0f;
-
     @Override
     public void update(float dt) {
 
 
 
-        spriteAnimationTimeLeft -= dt;
 
 
         if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {

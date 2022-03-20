@@ -11,43 +11,28 @@ import static org.lwjgl.stb.STBImage.*;
 
 public class Texture implements RegisterMapData {
 
-    private final ByteBuffer image;
-
-
+    private ByteBuffer image;
     private String filepath;
     private int texID;
     private int width, height;
 
 
-    public Texture(String filepath) {
+    public void init(String filepath) {
         this.filepath = filepath;
 
-
         //Generate the Texture -> GPU
-
         texID = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, texID);
 
-    /*
-    ===============
-    |
-    |    Set the parameter of the texture and Repeat Image in both directions
-    |
-    ===============
-     */
-
-
+        //Set the parameter of the texture and Repeat Image in both directions
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
         // if stretch the image, about the pixel
-
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
         // if shrink the image, about the pixel
-
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
 
         //Buffer for integer
         IntBuffer width = BufferUtils.createIntBuffer(1);
@@ -56,13 +41,7 @@ public class Texture implements RegisterMapData {
 
         stbi_set_flip_vertically_on_load(true);
 
-
-
-        //Buffer for Byte
-
-
-        //stbi_load filepath 절대 경로 확인 ... 1
-
+        //stbi_load filepath 절대 경로 확인
         image = stbi_load(spriteSheetAddress, width, height, channels, 0);
 
         if (image != null) {
@@ -81,11 +60,9 @@ public class Texture implements RegisterMapData {
         } else {
             assert false : "Error: (Texture) Could not load image '" + filepath + "'";
         }
-
-
-
        stbi_image_free(image);
     }
+
 
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, texID);
