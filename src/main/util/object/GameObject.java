@@ -1,9 +1,5 @@
 
 
-/*
-Thanks :: https://github.com/codingminecraft/MarioYoutube/blob/c115151dcb110eb5a413d1b97a7b2852a472e45f/src/main/java/jade/GameObject.java
- */
-
 
 package main.util.object;
 

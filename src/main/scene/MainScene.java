@@ -53,12 +53,10 @@ public class MainScene extends Scene  {
         obj1 = new GameObject("Object 1", new Transform(new Vector2f(200, 100),
                 new Vector2f(256, 256)), 2);
 
+        SpriteRenderer render1 = new SpriteRenderer();
+        render1.setColor(new Vector4f(1.0f, 0.0f, 0.0f, 0.5f));
 
-        SpriteRenderer obj1Sprite = new SpriteRenderer();
-        obj1Sprite.setColor(new Vector4f(1, 0, 0, 1));
-        obj1.addComponent(obj1Sprite);
-
-
+        obj1.addComponent(render1);
         this.addGameObjectToScene(obj1);
         this.activeGameObject = obj1;
 
