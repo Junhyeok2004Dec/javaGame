@@ -18,20 +18,22 @@ public class SpriteRenderer extends Component {
     //image Transform
     private transient Transform lastTransform;
     private transient boolean isDirty = false;
-//
-//
-//    public SpriteRenderer(Vector4f color) {
-//        this.color = color;
-//        this.sprite = new Sprite(null);
-//        this.isDirty = true;
-//    }
-//
-//    public SpriteRenderer(Sprite sprite) {
-//        this.sprite = sprite;
-//        this.color = new Vector4f(1, 1, 1, 1);
-//        this.isDirty = true;
-//    }
-//
+
+/*
+    public SpriteRenderer(Vector4f color) {
+        this.color = color;
+        this.sprite = new Sprite(null);
+        this.isDirty = true;
+    }
+
+    public SpriteRenderer(Sprite sprite) {
+        this.sprite = sprite;
+        this.color = new Vector4f(1, 1, 1, 1);
+        this.isDirty = true;
+    }
+
+ */
+
     @Override
     public void start() {
 
@@ -43,7 +45,7 @@ public class SpriteRenderer extends Component {
 
         float[] imColor = {color.x, color.y, color.z, color.w};
 
-            if (ImGui.colorPicker4("색상 선택", imColor)) {
+            if (ImGui.colorPicker4("색상 선택 : ", imColor)) {
                 this.color.set(imColor[0], imColor[1], imColor[2], imColor[3]);
                 this.isDirty = true;
             }
@@ -83,7 +85,7 @@ public class SpriteRenderer extends Component {
 
     }
 
-    public void setColor(Vector4f sprite) {
+    public void setColor(Vector4f color) {
         if (!this.color.equals(color )) {
             this.isDirty = true;
             this.color.set(color);
