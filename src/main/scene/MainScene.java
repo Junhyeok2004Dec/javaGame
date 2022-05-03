@@ -65,6 +65,7 @@ public class MainScene extends Scene  {
 
         SpriteRenderer obj2SpriteRenderer = new SpriteRenderer();
 
+
         Sprite obj2Sprite = new Sprite();
         obj2Sprite.setTexture(AssetPool.getTexture(spriteSheetAddress));
         obj2SpriteRenderer.setSprite(obj2Sprite);
@@ -83,7 +84,7 @@ public class MainScene extends Scene  {
 
 
 
-            String serialized = gson.toJson(objtest);
+            String serialized = gson.toJson(obj1);
             System.out.println(serialized);
 
             // 역직렬화
