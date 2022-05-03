@@ -191,7 +191,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="imgui-app-1.86.2" level="project" />
     <orderEntry type="library" name="google.code.gson" level="project" />
+    <orderEntry type="library" name="io.github.spair.imgui.java.app" level="project" />
   </component>
 </module>

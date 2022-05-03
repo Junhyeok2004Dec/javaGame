@@ -11,7 +11,6 @@ public class GameObject {
 
     private String name;
 
-
     private List<Component> components;
     public Transform transform;
     private int zIndex;
@@ -58,8 +57,9 @@ public class GameObject {
     }
 
     public void addComponent(Component c) {
-        this.components.add(c);
         c.gameObject = this;
+        this.components.add(c);
+
     }
 
     public void update(float dt) {
