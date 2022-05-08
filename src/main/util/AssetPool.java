@@ -1,8 +1,8 @@
 package main.util;
 
-import main.components.Shader;
-import main.components.Texture;
-import main.components.SpriteSheet;
+import main.util.components.Shader;
+import main.util.components.Texture;
+import main.util.components.SpriteSheet;
 
 import java.io.File;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package main.components;
+package main.util.components;
 
 import org.joml.*;
 import org.lwjgl.BufferUtils;

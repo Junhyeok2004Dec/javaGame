@@ -1,10 +1,9 @@
 package main.scene;
 
 import assets.RegisterMapData;
-import imgui.ImGui;
+import main.util.renderer.Renderer;
 import main.util.object.Camera;
 import main.util.object.GameObject;
-import main.renderer.Renderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,19 +72,7 @@ public abstract class Scene implements RegisterMapData {
         return this;
     }
 
-    public void sceneImgui() {
-        if (activeGameObject != null) {
-            ImGui.begin("Inspector");
-            activeGameObject.imgui();
-            ImGui.end();
-        }
 
-        imgui();
-    }
-
-    public void imgui() {
-
-    }
 
 
 }

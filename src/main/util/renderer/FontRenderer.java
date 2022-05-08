@@ -1,4 +1,4 @@
-package main.renderer;
+package main.util.renderer;
 
 import main.util.object.Component;
 

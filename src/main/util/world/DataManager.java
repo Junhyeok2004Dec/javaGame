@@ -1,7 +1,7 @@
 package main.util.world;
 
 import main.scene.Scene;
-import main.renderer.FontRenderer;
+import main.util.renderer.FontRenderer;
 import main.system.player.Player;
 
 import java.awt.*;

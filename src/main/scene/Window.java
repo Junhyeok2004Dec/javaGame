@@ -1,9 +1,8 @@
 package main.scene;
 
 
-import main.Input.KeyListener;
-import main.Input.MouseListener;
-import main.util.ImGuiLayer;
+import main.util.Input.KeyListener;
+import main.util.Input.MouseListener;
 import main.util.Time;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -18,7 +17,6 @@ public class Window {
     private int width, height;
     private String title;
     private long glfwWindow;
-    private ImGuiLayer imGuiLayer;
 
     //color
     public float r,g,b,a;
@@ -153,9 +151,6 @@ public class Window {
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-        this.imGuiLayer = new ImGuiLayer(glfwWindow);
-        this.imGuiLayer.initImGui();
-
 
 
         Window.changeScene(0);
@@ -184,7 +179,6 @@ public class Window {
                 currentScene.update(dt);
             }
 
-            this.imGuiLayer.update(dt, currentScene);
             glfwSwapBuffers(glfwWindow);
 
             endTime = (float)glfwGetTime();
