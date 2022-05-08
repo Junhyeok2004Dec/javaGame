@@ -1,7 +1,6 @@
 package main.scene;
 
-import imgui.ImGui;
-import main.Input.KeyListener;
+import main.util.Input.KeyListener;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER;
 

@@ -1,7 +1,7 @@
 package main.scene;
 
 import main.util.object.Camera;
-import main.components.SpriteSheet;
+import main.util.components.SpriteSheet;
 import main.util.AssetPool;
 import org.joml.Vector2f;
 
