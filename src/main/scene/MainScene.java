@@ -1,9 +1,9 @@
 package main.scene;
 
 import assets.RegisterMapData;
+import main.util.AssetPool;
 import main.util.Input.KeyListener;
 import main.util.components.SpriteSheet;
-import main.util.AssetPool;
 import main.util.object.Camera;
 import main.util.object.GameObject;
 import main.util.world.MatrixObject;
