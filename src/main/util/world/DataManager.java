@@ -2,139 +2,67 @@ package main.util.world;
 
 import main.scene.Scene;
 import main.util.renderer.FontRenderer;
-import main.system.player.Player;
 
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class DataManager {
 
 
-    /*
-     hex value, 자리수 상관 없음
-     Version 0.01
-    */
 
 
-
-
-
+    private int width, height;
+    private  int xPos, yPos;
+    ArrayList<ArrayList<Integer>> layout = new ArrayList<>();
     private String data;
-
-
-
-
-    int width, height;
-
-
     private String[] dataSplit;
 
-
-
-
-
-    ArrayList<ArrayList<Integer>> layout = new ArrayList<>();
-
-
-
-
-    // Player Data
-    public void playerData(String filepath)
-    {
-        int id;
-        int level;
-        int xp;
-        String name;
-
-        try {
-
-
-
-            data = new String(Files.readAllBytes(Paths.get(filepath)));
-            dataSplit = data.split("\\s+");
-
-
-
-            // PlayerData
-
-
-            /*
-            id
-            level
-            xp
-            Name
-             */
-            id = Integer.parseInt(dataSplit[0]);
-            level = Integer.parseInt(dataSplit[1]);
-            xp = Integer.parseInt(dataSplit[2]);
-
-            name = dataSplit[3];
-
-            Player player = new Player();
-
-            player.id = id;
-            player.level = level;
-            player.xp = xp;
-            player.PlayerName = name;
-
-
-
-
-
-
-
-
-
-
-
-
-
-        } catch (Exception e) {
-
-        }
+    public int getWidth() {
+        return
+                this.width;
     }
 
-    public int getWidth() {
-        return width;
+    public int getxPos() {
+        return this.xPos;
+    }
+
+    public int getyPos() {
+       return this.yPos;
+
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     // World GameObject Data
     public void Data(String filepath) {
 
 
-
-
         // Log log = new Log();
 
 
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath))) {
 
 
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(filepath))) {
-
-
-            while((data = bufferedReader.readLine()) != null) {
-
+            while ((data = bufferedReader.readLine()) != null) {
 
 
                 ArrayList<Integer> row = new ArrayList<>();
 
+
                 dataSplit = data.trim().split("\\s");
 
-                for(String str : dataSplit)
-                {
+                xPos = Integer.parseInt(dataSplit[0]);
+                yPos = Integer.parseInt(dataSplit[1]);
 
-                    if (!str.isEmpty())
-                    {
-                        int id = Integer.parseInt(str);
+                for (String str : dataSplit) {
+
+                    if (!str.isEmpty()) {
+                        int id = Integer.parseInt(str) + 2;
                         row.add(id);
                     }
                 }
@@ -142,10 +70,9 @@ public class DataManager {
                 layout.add(row);
 
                 this.width = layout.get(0).size();
-                this.height = layout.size();
+                this.height = layout.size() -1 ;
                 //exit
-                if (data.isEmpty())
-                {
+                if (data.isEmpty()) {
                     continue;
                 }
 
@@ -153,16 +80,7 @@ public class DataManager {
             }
 
 
-
-
-
-
-
-
-
-
         } catch (IOException e) {
-
 
 
             System.out.println("월드 데이터가 손상/손실되었습니다. 맵데이터 재설치가 요구됩니다. \n 임의의 변형은 오류를 가져올 수 있습니다.");
@@ -177,16 +95,11 @@ public class DataManager {
     }
 
 
-
-
-
     public void loadResources(FontRenderer font, String text, Color color) {
 
     }
-    public void loadResources(String shader, String image, int width, int height, int size)
-    {
 
-
+    public void loadResources(String shader, String image, int width, int height, int size) {
 
 
     }

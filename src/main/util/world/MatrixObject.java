@@ -50,48 +50,51 @@ public class MatrixObject implements RegisterMapData {
 		for (int id : mapID) {
 			mapGen.Data("src/assets/data/map/" + mapFile(id) + ".block");
 
-		}
-
-
-		// WorldData 분배
 
 
 
-		//worldData 분배 방식
-
-		// a(11) a(12) a(13) .. a(1  width)
-		// a(21) ...
-		// ..
-		// a(height 1) ...      a(height width)
-
-		// for matrix system
-
-
-		int width = mapGen.getWidth();
-		int height = mapGen.getHeight();
-
-		GameObject[][] object = new GameObject[width][height];
+			// WorldData 분배
 
 
 
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
+			//worldData 분배 방식
+
+			// a(11) a(12) a(13) .. a(1  width)
+			// a(21) ...
+			// ..
+			// a(height 1) ...      a(height width)
+
+			// for matrix system
+
+
+			int width = mapGen.getWidth();
+			int height = mapGen.getHeight();
+
+
+			GameObject[][] object = new GameObject[width][height];
 
 
 
-				object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * i, blockSize * j), new Vector2f(blockSize, blockSize)), 1);
+			for (int i = 0; i < height; i++) {
+				for (int j = 0; j < width; j++) {
 
-				object[j][i].addComponent(new SpriteRenderer(sprite.getSprite(mapGen.getData(i, j))));
 
-				System.out.println(getScene());
-				getScene().addGameObjectToScene(object[j][i]);
 
+					object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * mapGen.getyPos(), blockSize * mapGen.getxPos()), new Vector2f(blockSize, blockSize)), 1);
+
+					object[j][i].addComponent(new SpriteRenderer(sprite.getSprite(mapGen.getData(i, j))));
+
+					System.out.println(getScene());
+					getScene().addGameObjectToScene(object[j][i]);
+
+
+
+				}
 
 
 			}
-
-
 		}
+
 
 
 
