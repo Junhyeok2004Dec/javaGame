@@ -182,5 +182,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="joml-1.10.4-sources" level="project" />
+    <orderEntry type="library" name="joml" level="project" />
+    <orderEntry type="library" name="lwjgl-release-3.3.1-custom" level="project" />
   </component>
 </module>
