@@ -45,6 +45,15 @@ public class GameObject {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "GameObject{" +
+                "name='" + name + '\'' +
+                ", components=" + components +
+                ", transform=" + transform +
+                ", zIndex=" + zIndex +
+                '}';
+    }
 
     public <T extends Component> void removeComponent(Class<T> componentClass) {
         for (int i=0; i < components.size(); i++) {
@@ -78,4 +87,9 @@ public class GameObject {
         return this.zIndex;
     }
 
+
+
+
+
     }
+
