@@ -17,8 +17,8 @@ used
 ====
 
 
-Main :: JAVA \
-used :: LWJGL(OPENGL) / ImGui / Gson
+Main :: JAVA 
+used :: LWJGL(OPENGL)
 
 
 2022 07 21 // [0.1.0]-beta//
