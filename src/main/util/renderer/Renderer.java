@@ -1,6 +1,6 @@
-package main.renderer;
+package main.util.renderer;
 
-import main.components.Texture;
+import main.util.components.Texture;
 import main.util.object.GameObject;
 
 import java.awt.*;

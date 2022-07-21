@@ -1,10 +1,9 @@
-package main.renderer;
+package main.util.renderer;
 
-import imgui.ImGui;
-import main.components.Sprite;
+import main.util.components.Sprite;
+import main.util.components.Texture;
 import main.util.object.Component;
 import main.util.object.Transform;
-import main.components.Texture;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
@@ -18,37 +17,26 @@ public class SpriteRenderer extends Component {
     //image Transform
     private transient Transform lastTransform;
     private transient boolean isDirty = false;
-//
-//
-//    public SpriteRenderer(Vector4f color) {
-//        this.color = color;
-//        this.sprite = new Sprite(null);
-//        this.isDirty = true;
-//    }
-//
-//    public SpriteRenderer(Sprite sprite) {
-//        this.sprite = sprite;
-//        this.color = new Vector4f(1, 1, 1, 1);
-//        this.isDirty = true;
-//    }
-//
+
+
+    public SpriteRenderer(Vector4f color) {
+        this.color = color;
+        this.sprite = new Sprite();
+        this.isDirty = true;
+    }
+
+    public SpriteRenderer(Sprite sprite) {
+        this.sprite = sprite;
+        this.color = new Vector4f(1, 1, 1, 1);
+        this.isDirty = true;
+    }
+
     @Override
     public void start() {
 
         this.lastTransform = gameObject.transform.copy();
     }
 
-    @Override
-    public void imgui() {
-
-        float[] imColor = {color.x, color.y, color.z, color.w};
-
-            if (ImGui.colorPicker4("색상 선택", imColor)) {
-                this.color.set(imColor[0], imColor[1], imColor[2], imColor[3]);
-                this.isDirty = true;
-            }
-
-    }
 
     @Override
     public void update(float dt) {

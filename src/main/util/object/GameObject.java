@@ -1,9 +1,5 @@
 
 
-/*
-Thanks :: https://github.com/codingminecraft/MarioYoutube/blob/c115151dcb110eb5a413d1b97a7b2852a472e45f/src/main/java/jade/GameObject.java
- */
-
 
 package main.util.object;
 
@@ -12,11 +8,13 @@ import java.util.List;
 
 public class GameObject {
 
-    private int zIndex;
 
     private String name;
+
     private List<Component> components;
     public Transform transform;
+    private int zIndex;
+
 
     public GameObject(String name) {
         this.name = name;
@@ -47,10 +45,14 @@ public class GameObject {
         return null;
     }
 
-    public void imgui() {
-        for (Component c : components) {
-            c.imgui();
-        }
+    @Override
+    public String toString() {
+        return "GameObject{" +
+                "name='" + name + '\'' +
+                ", components=" + components +
+                ", transform=" + transform +
+                ", zIndex=" + zIndex +
+                '}';
     }
 
     public <T extends Component> void removeComponent(Class<T> componentClass) {
@@ -64,8 +66,9 @@ public class GameObject {
     }
 
     public void addComponent(Component c) {
-        this.components.add(c);
         c.gameObject = this;
+        this.components.add(c);
+
     }
 
     public void update(float dt) {
@@ -83,4 +86,10 @@ public class GameObject {
     public int zIndex() {
         return this.zIndex;
     }
-}
+
+
+
+
+
+    }
+

@@ -1,7 +1,7 @@
-package main.renderer;
+package main.util.renderer;
 
-import main.components.Shader;
-import main.components.Texture;
+import main.util.components.Shader;
+import main.util.components.Texture;
 import main.scene.Window;
 import main.util.AssetPool;
 import assets.RegisterMapData;
