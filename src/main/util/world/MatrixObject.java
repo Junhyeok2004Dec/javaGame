@@ -23,6 +23,7 @@ public class MatrixObject implements RegisterMapData {
 
 	private final int blockSize = 16;
 
+	private GameObject[][] object;
 
 	private SpriteSheet sprite;
 
@@ -71,7 +72,7 @@ public class MatrixObject implements RegisterMapData {
 			int height = mapGen.getHeight();
 
 
-			GameObject[][] object = new GameObject[width][height];
+			object = new GameObject[width][height];
 
 
 
@@ -80,7 +81,7 @@ public class MatrixObject implements RegisterMapData {
 
 
 
-					object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * mapGen.getyPos(), blockSize * mapGen.getxPos()), new Vector2f(blockSize, blockSize)), 1);
+					object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * i, blockSize * j), new Vector2f(blockSize, blockSize)), 1);
 
 					object[j][i].addComponent(new SpriteRenderer(sprite.getSprite(mapGen.getData(i, j))));
 
@@ -98,6 +99,10 @@ public class MatrixObject implements RegisterMapData {
 
 
 
+	}
+
+	public GameObject getObject(int x, int y)  {
+		return this.object[x][y];
 	}
 
 

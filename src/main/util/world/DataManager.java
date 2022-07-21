@@ -1,9 +1,7 @@
 package main.util.world;
 
 import main.scene.Scene;
-import main.util.renderer.FontRenderer;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +13,6 @@ public class DataManager {
 
 
     private int width, height;
-    private  int xPos, yPos;
     ArrayList<ArrayList<Integer>> layout = new ArrayList<>();
     private String data;
     private String[] dataSplit;
@@ -25,14 +22,6 @@ public class DataManager {
                 this.width;
     }
 
-    public int getxPos() {
-        return this.xPos;
-    }
-
-    public int getyPos() {
-       return this.yPos;
-
-    }
 
     public int getHeight() {
         return this.height;
@@ -56,13 +45,10 @@ public class DataManager {
 
                 dataSplit = data.trim().split("\\s");
 
-                xPos = Integer.parseInt(dataSplit[0]);
-                yPos = Integer.parseInt(dataSplit[1]);
-
                 for (String str : dataSplit) {
 
                     if (!str.isEmpty()) {
-                        int id = Integer.parseInt(str) + 2;
+                        int id = Integer.parseInt(str);
                         row.add(id);
                     }
                 }
@@ -70,7 +56,7 @@ public class DataManager {
                 layout.add(row);
 
                 this.width = layout.get(0).size();
-                this.height = layout.size() -1 ;
+                this.height = layout.size();
                 //exit
                 if (data.isEmpty()) {
                     continue;
@@ -94,15 +80,6 @@ public class DataManager {
         return this.layout.get(row).get(column);
     }
 
-
-    public void loadResources(FontRenderer font, String text, Color color) {
-
-    }
-
-    public void loadResources(String shader, String image, int width, int height, int size) {
-
-
-    }
 
 
     public Scene Scene() {
