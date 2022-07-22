@@ -16,6 +16,9 @@ public class MainScene extends Scene implements RegisterMapData {
 	MatrixObject matrixObject = new MatrixObject();
 
 
+
+
+
 	@Override
 	public void init() {
 
@@ -75,10 +78,10 @@ public class MainScene extends Scene implements RegisterMapData {
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_Y)) {
 			matrixObject.getObject(1, 1).transform.position.x -= 500f * dt;
 		}
-
  		for (GameObject go : this.gameObjects) {
 			go.update(dt);
 		}
+
 
 		this.renderer.render();
 

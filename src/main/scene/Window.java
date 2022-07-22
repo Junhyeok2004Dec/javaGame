@@ -241,6 +241,7 @@ public class Window {
         get().height = newHeight;
     }
 
-
-
+    public long getGlfwWindow() {
+        return this.glfwWindow;
+    }
 }
