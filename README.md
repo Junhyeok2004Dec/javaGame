@@ -1,64 +1,17 @@
-// Nov 2021
-// Dec 2021
-// Jan 2022
-// Feb 2022
-// Mar 2022
+This program is used
 
-in study Course
-===============
+2021학년도 제 2학년 2학기 개인탐구활동
+(2d 사이드뷰(side-view) 횡스크롤 게임 알고리즘 구현)
 
-Oct, 2021 ~ Mar, 2022
+2022학년도 제 3학년 1학기 개인탐구활동
+(객체 지향 프로그래밍을 통한 플레이어 데이터 시스템 연구)
 
-1. Default Program Library
-2. Set UI
-3. Main Window
-4. Game System (Default)
+2022학년도 제 3학년 1학기 자율동아리(위지학)활동
+(객체 지향 프로그래밍을 통한 게임 알고리즘 구현)
 
 
-Main construction :: Imgui, Gson
+학교 :: 제주제일고등학교 (제주특별자치도, 제주시)
 
 
-Main Course I
-==============
-
-1. Game World
-2. Options
-3. Early Ending(Semi)
-4. Sound (Maybe OpenAL Library will be adopted In this Program)
-5. ...(etc)
-
-
-
-
-Main Course II
-=================
-
-Maybe Launched *last 2022* else *2023*
-
-1. Check Library Licence and adopt them.
-2. Update Module
-3. Custom Game Library and Resources
-4. Multi Language support
-
-..
-
-
-
-
-
-used
-====
-
-
-Main :: JAVA \
-used :: LWJGL(OPENGL) / ImGui / Gson
-
-
-2022 03 01 // [0.0.1]-beta//
-
-Under Construction
-==========================
-
-ImGui 설정중
-Gson 연동 -> json과 연동
-
+LWJGL - Java
+https://www.lwjgl.org/
