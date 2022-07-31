@@ -74,9 +74,9 @@ public class MainScene extends Scene implements RegisterMapData {
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
 			camera.position.y -= 1000f * dt;
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_T)) {
-			matrixObject.getObject(1,1).transform.position.x += 500f * dt;
+			matrixObject.getObject(0,0).transform.position.x += 500f * dt;
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_Y)) {
-			matrixObject.getObject(1, 1).transform.position.x -= 500f * dt;
+			matrixObject.getObject(0, 0).transform.position.x -= 500f * dt;
 		}
  		for (GameObject go : this.gameObjects) {
 			go.update(dt);

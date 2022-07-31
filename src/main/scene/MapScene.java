@@ -1,9 +1,5 @@
 package main.scene;
 
-import main.util.Input.KeyListener;
-
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER;
-
 public class MapScene extends Scene {
 
     public MapScene() {
@@ -11,7 +7,6 @@ public class MapScene extends Scene {
     }
 
 
-    private boolean changingScene = false;
     private float timeToChangeScene = 1.0f;
 
     @Override
@@ -28,25 +23,14 @@ public class MapScene extends Scene {
 
         System.out.println("" + (1.0f / dt) + "FPS");
 
-        // todo :: Exit input / scene change to previous scene.
 
-
-
-
-        if (!changingScene && KeyListener.isKeyPressed(GLFW_KEY_ENTER)) {
-            changingScene = true;
-        }
-
-        if (changingScene && timeToChangeScene > 0) {
+        if (timeToChangeScene > 0) {
             timeToChangeScene -= dt;
             Window.get().r -= dt * 5.0f;
             Window.get().g -= dt * 1.0f;
             Window.get().b -= dt * 5.0f;
 
-        } else if (changingScene) {
-
         }
-
 
     }
 }
