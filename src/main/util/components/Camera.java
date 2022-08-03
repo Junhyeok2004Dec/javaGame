@@ -1,4 +1,4 @@
-package main.util.object;
+package main.util.components;
 
 import org.joml.Matrix4f;
 import org.joml.Vector2f;

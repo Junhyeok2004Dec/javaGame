@@ -1,4 +1,4 @@
-package main.util.object;
+package main.util.components;
 
 import org.joml.Vector2f;
 
@@ -45,5 +45,25 @@ public class Transform {
         Transform t = (Transform) o;
         return t.position.equals(this.position) && t.scale.equals(this.scale);
 
+    }
+
+    public Vector2f getPosition() {
+        return this.position;
+    }
+
+    public float getXpos() {
+        return this.position.x();
+    }
+
+    public float getYpos() {
+        return this.position.y();
+    }
+
+    @Override
+    public String toString() {
+        return "Transform{" +
+                "position=" + position +
+                ", scale=" + scale +
+                '}';
     }
 }

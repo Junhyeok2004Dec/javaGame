@@ -2,8 +2,8 @@ package main.util.renderer;
 
 import main.util.components.Sprite;
 import main.util.components.Texture;
-import main.util.object.Component;
-import main.util.object.Transform;
+import main.util.components.Component;
+import main.util.components.Transform;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 

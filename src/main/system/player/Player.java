@@ -5,6 +5,7 @@ public class Player implements DefaultEntity {
 
     public int level, xp, maxXP, id;
 
+
     public String PlayerName;
 
 

@@ -1,4 +1,4 @@
-package main.util.object;
+package main.util.components;
 
 public abstract class Component {
 
@@ -7,9 +7,6 @@ public abstract class Component {
 
 
 
-    public void imgui() {
-
-    }
 
     public void start() {
 

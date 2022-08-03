@@ -2,8 +2,8 @@ package main.scene;
 
 import assets.RegisterMapData;
 import main.util.renderer.Renderer;
-import main.util.object.Camera;
-import main.util.object.GameObject;
+import main.util.components.Camera;
+import main.util.components.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;

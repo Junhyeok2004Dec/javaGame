@@ -1,6 +1,6 @@
 package main.util.renderer;
 
-import main.util.object.Component;
+import main.util.components.Component;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -184,6 +184,8 @@ public class Window {
             endTime = (float)glfwGetTime();
             dt = endTime - beginTime;
             beginTime = endTime;
+
+
         }
 
     }

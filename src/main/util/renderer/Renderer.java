@@ -1,7 +1,7 @@
 package main.util.renderer;
 
 import main.util.components.Texture;
-import main.util.object.GameObject;
+import main.util.components.GameObject;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 
 
 
-package main.util.object;
+package main.util.components;
 
 import java.util.ArrayList;
 import java.util.List;

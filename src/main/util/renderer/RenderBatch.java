@@ -1,10 +1,10 @@
 package main.util.renderer;
 
-import main.util.components.Shader;
-import main.util.components.Texture;
+import assets.RegisterMapData;
 import main.scene.Window;
 import main.util.AssetPool;
-import assets.RegisterMapData;
+import main.util.components.Shader;
+import main.util.components.Texture;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 

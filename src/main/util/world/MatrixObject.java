@@ -4,8 +4,8 @@ import assets.RegisterMapData;
 import main.util.components.SpriteSheet;
 import main.util.renderer.SpriteRenderer;
 import main.util.AssetPool;
-import main.util.object.GameObject;
-import main.util.object.Transform;
+import main.util.components.GameObject;
+import main.util.components.Transform;
 import org.joml.Vector2f;
 
 import static main.scene.Window.getScene;
@@ -87,6 +87,8 @@ public class MatrixObject implements RegisterMapData {
 
 					System.out.println(getScene());
 					getScene().addGameObjectToScene(object[j][i]);
+
+					System.out.println(object[j][i].transform.toString());
 
 
 

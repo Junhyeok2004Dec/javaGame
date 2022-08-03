@@ -4,8 +4,8 @@ import assets.RegisterMapData;
 import main.util.AssetPool;
 import main.util.Input.KeyListener;
 import main.util.components.SpriteSheet;
-import main.util.object.Camera;
-import main.util.object.GameObject;
+import main.util.components.Camera;
+import main.util.components.GameObject;
 import main.util.world.MatrixObject;
 import org.joml.Vector2f;
 
