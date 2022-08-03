@@ -1,9 +1,9 @@
 package main.scene;
 
 
-import main.util.Input.KeyListener;
-import main.util.Input.MouseListener;
-import main.util.Time;
+import main.system.util.Input.KeyListener;
+import main.system.util.Input.MouseListener;
+import main.system.util.Time;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;

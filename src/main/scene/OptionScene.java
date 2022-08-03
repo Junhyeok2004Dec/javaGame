@@ -1,8 +1,8 @@
 package main.scene;
 
-import main.util.components.Camera;
-import main.util.components.SpriteSheet;
-import main.util.AssetPool;
+import main.system.util.components.Camera;
+import main.system.util.components.SpriteSheet;
+import main.system.util.AssetPool;
 import org.joml.Vector2f;
 
 public class OptionScene extends Scene {

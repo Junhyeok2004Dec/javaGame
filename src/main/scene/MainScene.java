@@ -1,12 +1,12 @@
 package main.scene;
 
 import assets.RegisterMapData;
-import main.util.AssetPool;
-import main.util.Input.KeyListener;
-import main.util.components.SpriteSheet;
-import main.util.components.Camera;
-import main.util.components.GameObject;
-import main.util.world.MatrixObject;
+import main.system.util.AssetPool;
+import main.system.util.Input.KeyListener;
+import main.system.util.components.SpriteSheet;
+import main.system.util.components.Camera;
+import main.system.util.components.GameObject;
+import main.system.util.world.MatrixObject;
 import org.joml.Vector2f;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -73,10 +73,12 @@ public class MainScene extends Scene implements RegisterMapData {
 			camera.position.y += 1000f * dt;
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
 			camera.position.y -= 1000f * dt;
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_T)) {
-			matrixObject.getObject(0,0).transform.position.x += 500f * dt;
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_Y)) {
-			matrixObject.getObject(0, 0).transform.position.x -= 500f * dt;
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT_BRACKET)) {
+			camera.adjustProjection();
+			camera.enLargement(0.8f);
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT_BRACKET)) {
+			camera.adjustProjection();
+			camera.enLargement(1.2f);
 		}
  		for (GameObject go : this.gameObjects) {
 			go.update(dt);
