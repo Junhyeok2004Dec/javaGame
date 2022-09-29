@@ -23,6 +23,11 @@ public class GameObject {
         this.zIndex = 0;
     }
 
+    public Transform getTransform() {
+        return transform;
+    }
+
+    // getTransform().getXpos -> get component x pos
     public GameObject(String name, Transform transform, int zIndex) {
         this.name = name;
         this.zIndex = zIndex;

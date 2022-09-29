@@ -6,14 +6,14 @@ import main.system.util.Input.KeyListener;
 import main.system.util.components.SpriteSheet;
 import main.system.util.components.Camera;
 import main.system.util.components.GameObject;
-import main.system.util.world.MatrixObject;
+import main.system.util.world.WorldObject;
 import org.joml.Vector2f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class MainScene extends Scene implements RegisterMapData {
 
-	MatrixObject matrixObject = new MatrixObject();
+	WorldObject worldObject = new WorldObject();
 
 
 
@@ -48,7 +48,7 @@ public class MainScene extends Scene implements RegisterMapData {
 
 
 
-		matrixObject.worldGen();
+		worldObject.worldGen();
 
 
 		// ResourceManager 참고
@@ -75,10 +75,14 @@ public class MainScene extends Scene implements RegisterMapData {
 			camera.position.y -= 1000f * dt;
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT_BRACKET)) {
 			camera.adjustProjection();
-			camera.enLargement(0.8f);
+			camera.enLargement(0.97f);
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT_BRACKET)) {
 			camera.adjustProjection();
-			camera.enLargement(1.2f);
+			camera.enLargement(1.02f);
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_P)) {
+			System.out.println(camera.getViewMatrix().perspectiveNear());
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_O)) {
+			camera.enLargement(1.2f, 1.2f);
 		}
  		for (GameObject go : this.gameObjects) {
 			go.update(dt);

@@ -1,6 +1,6 @@
 package main.system.object;
 
-public class Player implements DefaultEntity {
+public class Player extends Entity implements DefaultEntity {
 
 
     public int level, xp, maxXP, id;

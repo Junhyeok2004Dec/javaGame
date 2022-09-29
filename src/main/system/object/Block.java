@@ -6,7 +6,7 @@ import org.joml.Vector2f;
 
 import java.util.ArrayList;
 
-public class Block {
+public class Block extends GameObject {
 
 
 
@@ -35,6 +35,9 @@ public class Block {
 
     ArrayList<GameObject> blockList = new ArrayList<>();
 
+    public Block(String name, Transform transform, int zIndex) {
+        super(name, transform, zIndex);
+    }
 
 
     public Block block() {

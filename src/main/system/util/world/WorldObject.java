@@ -10,7 +10,7 @@ import org.joml.Vector2f;
 
 import static main.scene.Window.getScene;
 
-public class MatrixObject implements RegisterMapData {
+public class WorldObject implements RegisterMapData {
 
 	private String map;
 
@@ -18,7 +18,7 @@ public class MatrixObject implements RegisterMapData {
 	// 2차원 배열 설정하였음. object에는 2개의 인자가 있으며, f:R^2 -> R인 스칼라 함수임. 무조건 하나로 매핑됨.
 
 
-	private final int totalObjCount = 28;
+	private final int totalObjCount = 256;
 
 
 	private final int blockSize = 16;
@@ -32,7 +32,7 @@ public class MatrixObject implements RegisterMapData {
 
 	public void worldGen() {
 
-		System.out.println("worldgen");
+
 
 		DataManager mapGen = new DataManager();
 
