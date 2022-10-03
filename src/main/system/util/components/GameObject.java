@@ -14,6 +14,9 @@ public class GameObject {
     private List<Component> components;
     public Transform transform;
     private int zIndex;
+    private int groupID;
+
+
 
 
     public GameObject(String name) {
@@ -21,6 +24,7 @@ public class GameObject {
         this.components = new ArrayList<>();
         this.transform = new Transform();
         this.zIndex = 0;
+        this.groupID=0;
     }
 
     public Transform getTransform() {
@@ -33,6 +37,15 @@ public class GameObject {
         this.zIndex = zIndex;
         this.components = new ArrayList<>();
         this.transform = transform;
+        this.groupID = 0;
+    }
+
+    public GameObject(String name, Transform transform, int zIndex, int groupID) {
+        this.name = name;
+        this.zIndex = zIndex;
+        this.components = new ArrayList<>();
+        this.transform = transform;
+        this.groupID = groupID;
     }
 
     public <T extends Component> T getComponent(Class<T> componentClass) {
@@ -50,6 +63,10 @@ public class GameObject {
         return null;
     }
 
+
+
+
+
     @Override
     public String toString() {
         return "GameObject{" +
@@ -57,6 +74,7 @@ public class GameObject {
                 ", components=" + components +
                 ", transform=" + transform +
                 ", zIndex=" + zIndex +
+                ", groupID" + groupID +
                 '}';
     }
 

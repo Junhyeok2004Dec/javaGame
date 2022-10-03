@@ -79,10 +79,6 @@ public class MainScene extends Scene implements RegisterMapData {
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT_BRACKET)) {
 			camera.adjustProjection();
 			camera.enLargement(1.02f);
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_P)) {
-			System.out.println(camera.getViewMatrix().perspectiveNear());
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_O)) {
-			camera.enLargement(1.2f, 1.2f);
 		}
  		for (GameObject go : this.gameObjects) {
 			go.update(dt);

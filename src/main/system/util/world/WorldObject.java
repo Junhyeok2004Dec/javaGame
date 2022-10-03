@@ -1,12 +1,14 @@
 package main.system.util.world;
 
 import assets.RegisterMapData;
-import main.system.util.components.SpriteSheet;
-import main.system.util.renderer.SpriteRenderer;
 import main.system.util.AssetPool;
 import main.system.util.components.GameObject;
+import main.system.util.components.SpriteSheet;
 import main.system.util.components.Transform;
+import main.system.util.renderer.SpriteRenderer;
 import org.joml.Vector2f;
+
+import java.util.ArrayList;
 
 import static main.scene.Window.getScene;
 
@@ -15,7 +17,7 @@ public class WorldObject implements RegisterMapData {
 	private String map;
 
 
-	// 2차원 배열 설정하였음. object에는 2개의 인자가 있으며, f:R^2 -> R인 스칼라 함수임. 무조건 하나로 매핑됨.
+	ArrayList<GameObject[][]> objectList = new ArrayList<>();
 
 
 	private final int totalObjCount = 256;
@@ -28,6 +30,7 @@ public class WorldObject implements RegisterMapData {
 	private SpriteSheet sprite;
 
 
+	// todo GameObject 하나의 Arraylist에 저장할 것.
 
 
 	public void worldGen() {
@@ -88,19 +91,38 @@ public class WorldObject implements RegisterMapData {
 					System.out.println(getScene());
 					getScene().addGameObjectToScene(object[j][i]);
 
-					System.out.println(object[j][i].transform.toString());
-
 
 
 				}
 
 
 			}
+
+			objectList.add(object);
+
+
 		}
 
 
 
 
+	}
+
+
+	public void objectListTransform(int index, Transform transform) {
+
+
+		/*
+		무조건 직사각형(선형, 크기 = 가로 x 세로 로 정의되는 2차 선형 배열 데이터)
+		 */
+		int gObj1, gObj2;
+		gObj1 = object.length;
+		gObj2 = object[0].length;
+		for(GameObject gameobject[][] : objectList) {
+
+
+
+		}
 	}
 
 	public GameObject getObject(int x, int y)  {
