@@ -30,9 +30,11 @@ public class WorldObject implements RegisterMapData {
 	private SpriteSheet sprite;
 
 
-	// todo GameObject 하나의 Arraylist에 저장할 것.
-
-
+	/**
+	 *
+	 * Using this Command for "Worldgen()", Load DataManager, and getAddress involves that mapFileAddress, and data.
+	 *
+	 */
 	public void worldGen() {
 
 
@@ -85,12 +87,8 @@ public class WorldObject implements RegisterMapData {
 
 
 					object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * j, - blockSize * i), new Vector2f(blockSize, blockSize)), 1);
-
 					object[j][i].addComponent(new SpriteRenderer(sprite.getSprite(mapGen.getData(i, j))));
-
-					System.out.println(getScene());
 					getScene().addGameObjectToScene(object[j][i]);
-
 
 
 				}
@@ -109,26 +107,17 @@ public class WorldObject implements RegisterMapData {
 	}
 
 
-	public void objectListTransform(int index, Transform transform) {
-
-
-		/*
-		무조건 직사각형(선형, 크기 = 가로 x 세로 로 정의되는 2차 선형 배열 데이터)
-		 */
-		int gObj1, gObj2;
-		gObj1 = object.length;
-		gObj2 = object[0].length;
-		for(GameObject gameobject[][] : objectList) {
-
-
-
-		}
-	}
-
 	public GameObject getObject(int x, int y)  {
 		return this.object[x][y];
 	}
 
+	public GameObject[][] getObject() {
+		return this.object;
+	}
+
+	public ArrayList<GameObject[][]> getObjectList() {
+		return objectList;
+	}
 
 	public String mapFile(int id) {
 

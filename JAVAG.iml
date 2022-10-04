@@ -4,6 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/assets/image" type="java-resource" />
     </content>
     <content url="jar://$USER_HOME$/Downloads/lwjgl-release-3.3.1-custom.zip!/" />
     <orderEntry type="inheritedJdk" />
