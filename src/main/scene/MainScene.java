@@ -3,11 +3,12 @@ package main.scene;
 import assets.RegisterMapData;
 import main.system.util.AssetPool;
 import main.system.util.Input.KeyListener;
-import main.system.util.components.SpriteSheet;
-import main.system.util.components.Camera;
-import main.system.util.components.GameObject;
+import main.system.util.components.*;
+import main.system.util.renderer.SpriteRenderer;
 import main.system.util.world.WorldObject;
 import org.joml.Vector2f;
+import org.lwjgl.vulkan.VkRayTracingShaderGroupCreateInfoNV;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ public class MainScene extends Scene implements RegisterMapData {
 
 	WorldObject worldObject = new WorldObject();
 
+	private GameObject object = null;
+
 
 
 
@@ -24,6 +27,7 @@ public class MainScene extends Scene implements RegisterMapData {
 	@Override
 	public void init() {
 
+		Texture tex = new Texture();
 
 		loadResources();
 
@@ -33,6 +37,8 @@ public class MainScene extends Scene implements RegisterMapData {
 		this.camera = new Camera(new Vector2f(0, 0));
 
 		loadResources();
+
+		loadObject(new GameObject("testObject", new Transform(new Vector2f(1.2f,1.2f), new Vector2f(1.5f,1.5f)), 1), tex.init( "src/assets/image/Spongebob.png"));
 
 
 
@@ -46,7 +52,7 @@ public class MainScene extends Scene implements RegisterMapData {
 
 		AssetPool.addSpritesheet(spriteSheetAddress,
 				new SpriteSheet(AssetPool.getTexture(spriteSheetAddress),
-						16, 16, 28, 0));
+						16, 16, 256, 0));
 
 
 
@@ -80,8 +86,25 @@ public class MainScene extends Scene implements RegisterMapData {
 			objectListTransform(0, new Vector2f(1f,1f), new Vector2f(0,0));
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_J)) {
 			objectListTransform(0, new Vector2f(-1f,-1f), new Vector2f(0,0));
-
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_R)) {
+			this.object.transform.position.set(new Vector2f(1f,0f));
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_F)) {
+			this.object.transform.position.set(new Vector2f(0f,1f));
 		}
+
+
+
+
+
+
+
+		/**
+		 GameObject 관련 로드 및 업데이트
+		 float dt 간 업데이트 구성요함.
+
+		 2022 10 05
+
+		 */
  		for (GameObject go : this.gameObjects) {
 			go.update(dt);
 		}
@@ -92,6 +115,17 @@ public class MainScene extends Scene implements RegisterMapData {
 
 	}
 
+
+	public void loadObject(GameObject gameObject, Texture spriteAddress) {
+
+		SpriteSheet sprite = null;
+		this.object = gameObject;
+
+		this.object.addComponent(new SpriteRenderer(sprite.getSprite(spriteAddress)));
+		this.addGameObjectToScene(this.object);
+
+
+	}
 
 	/**
 	 *  @param index objectList's list number, one List element has two-dimension array. Zero(0) is first.
