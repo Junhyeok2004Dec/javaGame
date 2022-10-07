@@ -37,6 +37,7 @@ public class MainScene extends Scene implements RegisterMapData {
 
 		loadResources();
 
+
 		loadObject(new GameObject("testObject",
 				new Transform(new Vector2f(1.2f,1.2f), new Vector2f(1.5f,1.5f)), 1),
 				"background_tree.png");
@@ -74,6 +75,14 @@ public class MainScene extends Scene implements RegisterMapData {
 			this.object.transform.position.add(new Vector2f(0f,1f));
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
 			this.object.transform.position.add(new Vector2f(0f,-1.0f));
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_A)) {
+			this.camera.position.add(new Vector2f(-0.5f,0.0f));
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_S)) {
+			this.camera.position.add(new Vector2f(0.0f,-0.5f));
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_D)) {
+			this.camera.position.add(new Vector2f(0.5f,0.0f));
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_W)) {
+			this.camera.position.add(new Vector2f(0.0f,0.5f));
 		}
 
 
