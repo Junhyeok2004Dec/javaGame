@@ -33,20 +33,15 @@ public class Window {
         b = 0.7f;
         a = 0.5f;
     }
-
-
     Window() {
         this.width = 1600;
         this.height = 900;
 
 
-        this.title = "RENDOG RPG МОСКВЫ БЕТА (МОЖЕТ ВЕСТОР ВЫПУСК)";
+        this.title = "Will going be the nice program that using java lwjgl components :D";
         colorReset();
 
     }
-
-
-
 
     public static Window get() {
 
@@ -57,15 +52,11 @@ public class Window {
         }
         return Window.window;
     }
-
     public static Scene getScene() {
         return get().currentScene;
 
 
     }
-
-
-
 
     public void run() {
 

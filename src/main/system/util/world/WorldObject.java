@@ -16,7 +16,7 @@ public class WorldObject implements RegisterMapData {
 
 	private String map;
 
-
+	// world
 	ArrayList<GameObject[][]> objectList = new ArrayList<>();
 
 

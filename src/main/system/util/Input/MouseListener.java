@@ -1,5 +1,7 @@
 package main.system.util.Input;
 
+import org.joml.Vector2f;
+
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
@@ -24,6 +26,10 @@ public class MouseListener {
         this.lastX = 0.0;
         this.lastY = 0.0;
 
+    }
+
+    public Vector2f getMousePosVector2f(long window) {
+        return new Vector2f((float) get().lastX, (float) get().lastX);
     }
 
 
