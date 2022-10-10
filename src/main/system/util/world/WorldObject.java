@@ -38,12 +38,13 @@ public class WorldObject implements RegisterMapData {
 	public void worldGen() {
 
 
+		AssetPool.getShader(shaderAddress);
 
 		DataManager mapGen = new DataManager();
 
 
 
-		AssetPool.getShader(shaderAddress);
+
 
 		AssetPool.addSpritesheet(spriteSheetAddress, new SpriteSheet(AssetPool.getTexture(spriteSheetAddress),
 				blockSize, blockSize, totalObjCount, 0));
@@ -86,7 +87,7 @@ public class WorldObject implements RegisterMapData {
 
 
 
-					object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * j, - blockSize * i), new Vector2f(blockSize, blockSize)), 1);
+					object[j][i] = new GameObject("Block" + j + height * i, new Transform(new Vector2f(blockSize * j, - blockSize * i), new Vector2f(blockSize, blockSize)), 0);
 					object[j][i].addComponent(new SpriteRenderer(sprite.getSprite(mapGen.getData(i, j))));
 					getScene().addGameObjectToScene(object[j][i]);
 

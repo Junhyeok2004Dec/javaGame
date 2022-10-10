@@ -18,6 +18,8 @@ public class SpriteRenderer extends Component {
     private transient Transform lastTransform;
     private transient boolean isDirty = false;
 
+    private Texture texture;
+
 
     public SpriteRenderer(Vector4f color) {
         this.color = color;
@@ -29,6 +31,11 @@ public class SpriteRenderer extends Component {
         this.sprite = sprite;
         this.color = new Vector4f(1, 1, 1, 1);
         this.isDirty = true;
+    }
+
+    public SpriteRenderer(Texture texture) {
+        this.texture = texture;
+        this.color = new Vector4f(1, 0.7f, 1, 1);
     }
 
     @Override

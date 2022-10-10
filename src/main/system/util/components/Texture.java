@@ -20,6 +20,8 @@ public class Texture implements RegisterMapData {
     public void init(String filepath) {
         this.filepath = filepath;
 
+
+
         //Generate the Texture -> GPU
         texID = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, texID);
@@ -42,7 +44,7 @@ public class Texture implements RegisterMapData {
         stbi_set_flip_vertically_on_load(true);
 
         //stbi_load filepath 절대 경로 확인
-        image = stbi_load(spriteSheetAddress, width, height, channels, 0);
+        image = stbi_load(filepath, width, height, channels, 0);
 
         if (image != null) {
             this.width = width.get(0);

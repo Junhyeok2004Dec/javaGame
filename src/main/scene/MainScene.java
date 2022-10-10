@@ -3,13 +3,11 @@ package main.scene;
 import assets.RegisterMapData;
 import main.system.util.AssetPool;
 import main.system.util.Input.KeyListener;
-import main.system.util.Input.MouseListener;
 import main.system.util.components.*;
 import main.system.util.renderer.SpriteRenderer;
 import main.system.util.world.WorldObject;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -18,29 +16,27 @@ import static org.lwjgl.glfw.GLFW.*;
 public class MainScene extends Scene implements RegisterMapData {
 
 	WorldObject worldObject = new WorldObject();
-	Sprite sprites = new Sprite();
 	Texture tex = new Texture();
 	Window window = new Window();
 
 	private GameObject object = null;
 
+	private ArrayList<GameObject> gameObjectArrayList = new ArrayList<>();
+
+	int arraylist = 0;
+
 	@Override
 	public void init() {
 
-
-		loadResources();
-
-		System.out.println("mainscene");
-
 		sceneNum = 0;
+
+
+		AssetPool.getShader(shaderAddress);
+
 		this.camera = new Camera(new Vector2f(-100.0f, -100.0f));
 
+
 		loadResources();
-
-
-		loadObject(new GameObject("testObject",
-				new Transform(new Vector2f(1.2f,1.2f), new Vector2f(1.5f,1.5f)), 1),
-				"background_tree.png");
 
 
 
@@ -48,11 +44,19 @@ public class MainScene extends Scene implements RegisterMapData {
 
 	private void loadResources() {
 
-		AssetPool.getShader(shaderAddress);
-		AssetPool.addSpritesheet(spriteSheetAddress,
-				new SpriteSheet(AssetPool.getTexture(spriteSheetAddress),
-						16, 16, 256, 0));
+
+		loadObject(new GameObject("testObject",
+						new Transform(new Vector2f(10f,10f), new Vector2f(120f,120f)), 0),
+				"src/assets/image/Spongebob.png");
+
+
 		worldObject.worldGen();
+
+
+
+
+
+
 	}
 
 	/**
@@ -64,25 +68,17 @@ public class MainScene extends Scene implements RegisterMapData {
 	public void update(float dt) {
 
 		if (KeyListener.isKeyPressed(GLFW_KEY_I)) {
-			objectListTransform(0, new Vector2f(1f,1f), new Vector2f(0,0));
+			objectListTransform(0, new Vector2f(10f,10f), new Vector2f(0,0));
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_J)) {
-			objectListTransform(0, new Vector2f(-1f,-1f), new Vector2f(0,0));
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
-			this.object.transform.position.add(new Vector2f(1.0f,0f));
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
-			this.object.transform.position.add(new Vector2f(-1.0f,0f));
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
-			this.object.transform.position.add(new Vector2f(0f,1f));
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
-			this.object.transform.position.add(new Vector2f(0f,-1.0f));
+			objectListTransform(0, new Vector2f(-10f,-10f), new Vector2f(0,0));
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_A)) {
-			this.camera.position.add(new Vector2f(-0.5f,0.0f));
+			this.camera.position.add(new Vector2f(-5f,0.0f));
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_S)) {
-			this.camera.position.add(new Vector2f(0.0f,-0.5f));
+			this.camera.position.add(new Vector2f(0.0f,-5f));
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_D)) {
-			this.camera.position.add(new Vector2f(0.5f,0.0f));
+			this.camera.position.add(new Vector2f(5f,0.0f));
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_W)) {
-			this.camera.position.add(new Vector2f(0.0f,0.5f));
+			this.camera.position.add(new Vector2f(0.0f,5f));
 		}
 
 
@@ -90,6 +86,8 @@ public class MainScene extends Scene implements RegisterMapData {
  		for (GameObject go : this.gameObjects) {
 			go.update(dt);
 		}
+
+
 
 		 this.renderer.render();
 
@@ -100,7 +98,7 @@ public class MainScene extends Scene implements RegisterMapData {
 	 * @param gameObject Load this parameter as object that created.
 	 *
 	*/
-	public void loadObject(GameObject gameObject, String textureAddress) {
+	public void loadObject(GameObject gameObject) {
 
 		SpriteSheet sprite = null;
 		this.object = gameObject;
@@ -110,6 +108,31 @@ public class MainScene extends Scene implements RegisterMapData {
 
 
 	}
+
+	public void loadObject(GameObject gameObject, String spriteAddress) {
+
+
+		// image size get -> 편법사용(1x1 spriteSheet 구현)
+		tex.init(spriteAddress);
+		AssetPool.addSpritesheet(spriteAddress,
+				new SpriteSheet(AssetPool.getTexture(spriteAddress),
+						256, 256, 2, 0));
+
+		//반드시 크기 맞출 것.
+
+		SpriteSheet sprite = AssetPool.getSpritesheet(spriteAddress);
+
+		gameObjectArrayList.add(gameObject);
+		arraylist++;
+
+		gameObjectArrayList.get(arraylist - 1).addComponent(new SpriteRenderer(sprite.getSprite(1)));
+		this.addGameObjectToScene(gameObjectArrayList.get(arraylist - 1));
+
+
+
+
+	}
+
 
 	/**
 	 *  @param index objectList's list number, one List element has two-dimension array. Zero(0) is first.

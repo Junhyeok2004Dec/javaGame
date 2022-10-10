@@ -16,6 +16,13 @@ public class Transform {
 		init(position, new Vector2f());
 	}
 
+
+	/**
+	 * (Joml.Vector2f)
+	 *
+	 * @param position Vector2f - 위치 설정
+	 * @param scale Vector2f - 크기 설정
+	 */
 	public Transform(Vector2f position, Vector2f scale
 	) {
 		init(position, scale);
@@ -59,6 +66,10 @@ public class Transform {
 		return this.position.y();
 	}
 
+	/**
+	 *
+	 * @return 텍스트, for debugging
+	 */
 	@Override
 	public String toString() {
 		return "Transform{" +

@@ -25,6 +25,7 @@ public class AssetPool {
         }
     }
 
+
     public static Texture getTexture(String resourceName) {
         File file = new File(resourceName);
         if (AssetPool.textures.containsKey(file.getAbsolutePath())) {
@@ -32,13 +33,14 @@ public class AssetPool {
         } else {
             Texture texture = new Texture();
             texture.init(resourceName);
-
             AssetPool.textures.put(file.getAbsolutePath(), texture);
             return texture;
         }
     }
 
-    public static void addSpritesheet(String resourceName, SpriteSheet spritesheet) {
+
+
+    public static void addSpritesheet(String resourceName, SpriteSheet  spritesheet) {
         File file = new File(resourceName);
         if (!AssetPool.spritesheets.containsKey(file.getAbsolutePath())) {
             AssetPool.spritesheets.put(file.getAbsolutePath(), spritesheet);
