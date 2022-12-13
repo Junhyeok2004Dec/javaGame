@@ -2,7 +2,7 @@ package main.system.util.movement;
 
 import org.joml.Vector2f;
 
-public class physicsMovement {
+public class physicsCalculate {
 
 	private Vector2f pos2f = new Vector2f(0,0);
 	private Vector2f speed2f = new Vector2f(0,0);

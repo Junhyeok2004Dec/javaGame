@@ -47,7 +47,7 @@ public class MainScene extends Scene implements RegisterMapData {
 
 		loadObject(new GameObject("testObject",
 						new Transform(new Vector2f(10f,10f), new Vector2f(120f,120f)), 0),
-				"src/assets/image/Spongebob.png");
+				"src/assets/image/Spongebob.jpg");
 
 
 		worldObject.worldGen();
@@ -116,7 +116,7 @@ public class MainScene extends Scene implements RegisterMapData {
 		tex.init(spriteAddress);
 		AssetPool.addSpritesheet(spriteAddress,
 				new SpriteSheet(AssetPool.getTexture(spriteAddress),
-						256, 256, 2, 0));
+						256, 256, 1, 0));
 
 		//반드시 크기 맞출 것.
 
@@ -125,7 +125,9 @@ public class MainScene extends Scene implements RegisterMapData {
 		gameObjectArrayList.add(gameObject);
 		arraylist++;
 
-		gameObjectArrayList.get(arraylist - 1).addComponent(new SpriteRenderer(sprite.getSprite(1)));
+
+
+		gameObjectArrayList.get(arraylist - 1).addComponent(new SpriteRenderer(sprite.getSprite(0)));
 		this.addGameObjectToScene(gameObjectArrayList.get(arraylist - 1));
 
 
